@@ -2,29 +2,133 @@
 <html>
     <head>
         <title>JavaScript tutorial</title>
-        <link ref="stylesheet" href="C:\Users\HP\Desktop\website\ccss.css">
+        <link rel="stylesheet" href="chtml.css">
     </head>
-    <body bgcolor="#f0f0f0">
-       
-            <div class="title">
-                    <h1>JavaScript INTRODUCTION</h1>
-                    <p>
-                    </div>
-                    <div class="content">
-                        <h2>JavaScript Can Change HTML Content</h2>
-                        <h4>One of many JavaScript HTML methods is getElementById().
-                            <br>
-                            The example below "finds" an HTML element (with id="demo"), and changes the element content (innerHTML) to "Hello JavaScript":</h4>
-
-                        <h3>CSS example</h3>
-                    <img src="C:\Users\HP\Desktop\website\p2.png">
-                    
-            </div>
-            <div><a href="https://www.w3schools.com/js/tryit.asp?filename=tryjs_intro_inner_html">
-                <button type="button"><span></span> Try Yourself</button>
-                </a>
-                <br><br>
-                        <a href="https://www.w3schools.com/js/default.asp">click here to learn more</a>
-            </div>
+    <body >
+        <h1>JavaScript Tutorial</h1>
+        <p style="background-color: #dbe4e3d2;">
+            JavaScript is the world's most popular programming language.
+            <br>
+            JavaScript is the programming language of the Web.
+            <br>
+            JavaScript is easy to learn.
+            <br>
+            This tutorial will teach you JavaScript from basic to advanced.
+        </p>
+        <h2>Examples in Each Chapter</h2>
+        <p>With our "Try it Yourself" editor, you can edit the source code and view the result.</p>
+        <img src="p24.png">
+        <br>
+        <a href="https://www.w3schools.com/html/tryit.asp?filename=tryhtml_default">
+        <button>Try Yourself</button>
+        </a> 
+        <br><br>
+        <hr>
+        <h2>JavaScript Can Change HTML Content</h2>
+        <p>One of many JavaScript HTML methods is getElementById().
+        <br>
+        The example below "finds" an HTML element (with id="demo"), and changes the element content (innerHTML) to "Hello JavaScript":</p>
+        <img src="p25.png">
+        <br>
+        <a href="https://www.w3schools.com/html/tryit.asp?filename=tryhtml_default">
+        <button>Try Yourself</button>
+        </a> 
+        <p style="background-color: rgb(255, 249, 180);"><br>
+            JavaScript accepts both double and single quotes:
+        <br><br>
+    </p>
+    <br>
+    <img src="p26.png">
+    <br><br>
+    <hr>
+    <br><br>
+    <h1>JavaScript Where To</h1>
+    <hr>
+    <h2>The <"script"> Tag</h2>
+    <p>In HTML, JavaScript code is inserted between <"script"> and <"/script"> tags.</p>
+    <img src="p27.png">
+    <br>
+    <a href="https://www.w3schools.com/js/tryit.asp?filename=tryjs_whereto">
+        <button>Try Yourself</button>
+        </a> 
+    <p style="background-color: rgb(255, 249, 180);;"><br>Old JavaScript examples may use a type attribute: <"script type="text/javascript""">.
+        The type attribute is not required. <br>JavaScript is the default scripting language in HTML.<br><br></p>
+    <br>
+    <hr>
+    <br>
+    <h2>JavaScript Functions and Events</h2>
+    <p>A JavaScript function is a block of JavaScript code, that can be executed when "called" for.
+        <br>
+        For example, a function can be called when an event occurs, like when the user clicks a button.</p>
+        <br>
+    <p style="background-color: rgb(255, 249, 180);"><br>You will learn much more about functions and events in later chapters.<br><br></p>
+    <br>
+    <hr>
+    <h2>JavaScript in <"head"> or <"body"><"/body"></h2>
+    <p>You can place any number of scripts in an HTML document.
+        <br>
+        Scripts can be placed in the <"body">, or in the <"head"> section of an HTML page, or in both.</p>
+        <hr>
+        <br>
+    <h2>JavaScript in <"head"><"/head"></h2>
+    <p>In this example, a JavaScript function is placed in the <head> section of an HTML page.
+        <br>
+        The function is invoked (called) when a button is clicked:</p>
+        <img src="p28.png">
+        <br>
+        <a href="https://www.w3schools.com/js/tryit.asp?filename=tryjs_whereto_head">
+            <button>Try Yourself</button>
+            </a>
+        <hr>
+        <h2>JavaScript in <"body"><"/body"></h2>
+        <p>In this example, a JavaScript function is placed in the <"body"> section of an HTML page.
+            <br>
+            The function is invoked (called) when a button is clicked:</p>
+        <img src="p29.png">
+        <br>
+        <a href="https://www.w3schools.com/js/tryit.asp?filename=tryjs_whereto_body">
+            <button>Try Yourself</button>
+            </a>
+        <p style="background-color: rgb(255, 249, 180);"><br>Placing scripts at the bottom of the <body> element improves the display speed, because script interpretation slows down the display.<br><br></p>
+        <hr>
+        <h1>JavaScript Output</h1>
+        <h2>JavaScript Display Possibilities</h2>
+        <p>JavaScript can "display" data in different ways:
+            <ul>
+                <li>Writing into an HTML element, using innerHTML.</li>
+                <li>Writing into the HTML output using document.write().</li>
+                <li>Writing into an alert box, using window.alert().</li>
+                <li>Writing into the browser console, using console.log().</li>
+            </ul>
+        </p>
+        <hr>
+        <h2>Using innerHTML</h2>
+        <p>To access an HTML element, JavaScript can use the document.getElementById(id) method.
+            <br>
+            The id attribute defines the HTML element. The innerHTML property defines the HTML content:</p>
+        <img src="p30.png">
+        <br>
+        <a href="https://www.w3schools.com/js/tryit.asp?filename=tryjs_output_dom">
+            <button>Try Yourself</button>
+            </a>
+        <p style="background-color: rgb(255, 249, 180);"><br>Changing the innerHTML property of an HTML element is a common way to display data in HTML.<br><br></p>
+            <hr>
+        <h2>Using document.write()</h2>
+        <p>For testing purposes, it is convenient to use document.write():</p>
+        <img src="p31.png">
+        <br>
+        <a href="https://www.w3schools.com/js/tryit.asp?filename=tryjs_output_write">
+            <button>Try Yourself</button>
+            </a> 
+        <p style="background-color: rgb(255, 249, 180)"><br>Using document.write() after an HTML document is loaded, will delete all existing HTML:<br><br></p>
+        <img src="p32.png">
+        <br>
+        <a href="https://www.w3schools.com/js/tryit.asp?filename=tryjs_output_write_over">
+            <button>Try Yourself</button>
+        </a>
+        <p style="background-color: rgb(255, 249, 180);"><br>The document.write() method should only be used for testing.<br><br></p>
+        <br><br><br>
+            <a href="https://www.w3schools.com/css/default.asp">LEARN MORE</a>
+            <br>
     </body>
 </html>
