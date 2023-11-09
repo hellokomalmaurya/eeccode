@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>index</title>
+        <link rel="stylesheet" href="C:\Users\HP\Desktop\website\database-website\iframecss.css">
+    </head>
+    <body>
+       <h1>Code</h1>
+<pre>#include&lt;stdio.h>
+    #include&lt;string.h>
+        
+    #define MAX_SIZE 10
+    #define MAX_STRING_LENGTH 50
+        
+        char queue[MAX_SIZE][MAX_STRING_LENGTH];
+        int front = -1;
+        int rear = -1;
+        
+        // Function to check if the queue is empty
+        int isEmpty() {
+            return front == -1;
+        }
+        
+        // Function to check if the queue is full
+        int isFull() {
+            return (rear == MAX_SIZE - 1) && (front == 0);
+        }
+        
+        // Function to insert a string into the queue
+        void insert(const char* str) {
+            if (isFull()) {
+                printf("Queue is full. Cannot insert %s.\n", str);
+            } else {
+                if (front == -1) {
+                    front = 0;
+                }
+                rear = (rear + 1) % MAX_SIZE;
+                strcpy(queue[rear], str);
+                printf("Inserted \"%s\" into the queue.\n", str);
+            }
+        }
+        
+        // Function to delete a string from the queue
+        char* delete() {
+            char* deletedValue = NULL;
+            if (isEmpty()) {
+                printf("Queue is empty. Cannot delete.\n");
+            } else {
+                deletedValue = queue[front];
+                if (front == rear) {
+                    front = rear = -1;
+                } else {
+                    front = (front + 1) % MAX_SIZE;
+                }
+            }
+            return deletedValue;
+        }
+        
+        // Function to peek at the front string of the queue
+        char* peek() {
+            if (isEmpty()) {
+                printf("Queue is empty. Cannot peek.\n");
+            }
+            return queue[front];
+        }
+        
+        int main() {
+            // Example usage of the queue operations
+            insert("Apple");
+            insert("Banana");
+            insert("Cherry");
+        
+            printf("Peek: %s\n", peek());
+        
+            char* deletedValue = delete();
+            if (deletedValue != NULL) {
+                printf("Deleted: %s\n", deletedValue);
+            }
+        
+            printf("Peek: %s\n", peek());
+        
+            return 0;
+        } 
+<h1>Output</h1>
+ Inserted "Apple" into the queue.
+        Inserted "Banana" into the queue.
+        Inserted "Cherry" into the queue.
+        Peek: Apple
+        Deleted: Apple
+        Peek: Banana
+</pre>
+
+    </body>
+</html>

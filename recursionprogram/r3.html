@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>index</title>
+        <link rel="stylesheet" href="C:\Users\HP\Desktop\website\database-website\iframecss.css">
+    </head>
+    <body>
+       <h1>Code</h1>
+<pre>#include&lt;stdio.h>
+
+    int sumOfNaturalNumbers(int n);
+    
+    int main() {
+        int n;
+        
+        printf("Enter a positive integer: ");
+        scanf("%d", &n);
+        
+        if (n < 1) {
+            printf("Please enter a positive integer.\n");
+            return 1;
+        }
+        
+        int result = sumOfNaturalNumbers(n);
+        
+        printf("The sum of natural numbers up to %d is: %d\n", n, result);
+        
+        return 0;
+    }
+    
+    int sumOfNaturalNumbers(int n) {
+        if (n == 1) {
+            return 1;
+        } else {
+            return n + sumOfNaturalNumbers(n - 1);
+        }
+    }
+<h1>Output</h1>
+Enter a positive integer: 0
+Please enter a positive integer.
+
+Enter a positive integer: 5
+The sum of natural numbers up to 5 is: 15
+
+Enter a positive integer: 8
+The sum of natural numbers up to 8 is: 36
+</pre>
+
+    </body>
+</html>

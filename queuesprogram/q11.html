@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>index</title>
+        <link rel="stylesheet" href="C:\Users\HP\Desktop\website\database-website\iframecss.css">
+    </head>
+    <body>
+       <h1>Code</h1>
+<pre>
+#include&lt;stdio.h>
+#include&lt;stdlib.h>
+    
+    typedef struct {
+        int* array;
+        int* priorities;
+        int size;
+        int capacity;
+    } PriorityQueue;
+    
+    PriorityQueue* createPriorityQueue(int initialCapacity) {
+        PriorityQueue* queue = (PriorityQueue*)malloc(sizeof(PriorityQueue));
+        if (!queue) {
+            return NULL;
+        }
+        queue->array = (int*)malloc(sizeof(int) * initialCapacity);
+        queue->priorities = (int*)malloc(sizeof(int) * initialCapacity);
+        if (!queue->array || !queue->priorities) {
+            free(queue->array);
+            free(queue->priorities);
+            free(queue);
+            return NULL;
+        }
+        queue->size = 0;
+        queue->capacity = initialCapacity;
+        return queue;
+    }
+    
+    int isPriorityQueueEmpty(PriorityQueue* queue) {
+        return (queue->size == 0);
+    }
+    
+    int isPriorityQueueFull(PriorityQueue* queue) {
+        return (queue->size == queue->capacity);
+    }
+    
+    void resizePriorityQueue(PriorityQueue* queue) {
+        int newCapacity = queue->capacity * 2;
+        int* newArray = (int*)malloc(sizeof(int) * newCapacity);
+        int* newPriorities = (int*)malloc(sizeof(int) * newCapacity);
+        if (newArray && newPriorities) {
+            for (int i = 0; i < queue->size; i++) {
+                newArray[i] = queue->array[i];
+                newPriorities[i] = queue->priorities[i];
+            }
+            free(queue->array);
+            free(queue->priorities);
+            queue->array = newArray;
+            queue->priorities = newPriorities;
+            queue->capacity = newCapacity;
+        }
+    }
+    
+    void enqueuePriorityQueue(PriorityQueue* queue, int item, int priority) {
+        if (isPriorityQueueFull(queue)) {
+            resizePriorityQueue(queue);
+        }
+        int i = queue->size;
+        while (i > 0 && priority < queue->priorities[i - 1]) {
+            queue->array[i] = queue->array[i - 1];
+            queue->priorities[i] = queue->priorities[i - 1];
+            i--;
+        }
+        queue->array[i] = item;
+        queue->priorities[i] = priority;
+        queue->size++;
+        printf("%d with priority %d has been inserted into the priority queue.\n", item, priority);
+    }
+    
+    int dequeuePriorityQueue(PriorityQueue* queue) {
+        if (isPriorityQueueEmpty(queue)) {
+            printf("Priority Queue is empty. Cannot dequeue.\n");
+            return -1;
+        }
+        int item = queue->array[0];
+        for (int i = 1; i < queue->size; i++) {
+            queue->array[i - 1] = queue->array[i];
+            queue->priorities[i - 1] = queue->priorities[i];
+        }
+        queue->size--;
+        return item;
+    }
+    
+    int peekPriorityQueue(PriorityQueue* queue) {
+        if (isPriorityQueueEmpty(queue)) {
+            printf("Priority Queue is empty. No element to peek.\n");
+            return -1;
+        }
+        return queue->array[0];
+    }
+    
+    int main() {
+        PriorityQueue* queue = createPriorityQueue(10);
+    
+        enqueuePriorityQueue(queue, 10, 2);
+        enqueuePriorityQueue(queue, 20, 1);
+        enqueuePriorityQueue(queue, 30, 3);
+    
+        printf("Peek: %d\n", peekPriorityQueue(queue));
+    
+        printf("Dequeued: %d\n", dequeuePriorityQueue(queue));
+        printf("Peek: %d\n", peekPriorityQueue(queue));
+    
+        enqueuePriorityQueue(queue, 40, 1);
+        enqueuePriorityQueue(queue, 50, 2);
+    
+        printf("Dequeued: %d\n", dequeuePriorityQueue(queue));
+        printf("Dequeued: %d\n", dequeuePriorityQueue(queue));
+    
+        free(queue->array);
+        free(queue->priorities);
+        free(queue);
+    
+        return 0;
+    } 
+<h1>Output</h1>
+10 with priority 2 has been inserted into the priority queue.
+20 with priority 1 has been inserted into the priority queue.
+30 with priority 3 has been inserted into the priority queue.
+Peek: 20
+Dequeued: 20
+Peek: 10
+40 with priority 1 has been inserted into the priority queue.
+50 with priority 2 has been inserted into the priority queue.
+Dequeued: 40
+Dequeued: 10
+</pre>
+
+    </body>
+</html>

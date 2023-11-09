@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>index</title>
+        <link rel="stylesheet" href="C:\Users\HP\Desktop\website\database-website\iframecss.css">
+    </head>
+    <body>
+       <h1>Code</h1>
+<pre>#include < stdio.h >
+
+    float calculateMean(int arr[], int size, int index, int sum) {
+        if (index == size) {
+            return (float)sum / size;
+        } else {
+            return calculateMean(arr, size, index + 1, sum + arr[index]);
+        }
+    }
+    
+    int main() {
+        int size;
+        printf("Enter the size of the array: ");
+        scanf("%d", &size);
+        
+        int arr[size];
+        printf("Enter the elements of the array: ");
+        for (int i = 0; i < size; i++) {
+            scanf("%d", &arr[i]);
+        }
+        
+        float mean = calculateMean(arr, size, 0, 0);
+        printf("The arithmetic mean of the array is: %.2f\n", mean);
+        
+        return 0;
+    } 
+<h1>Output</h1>
+Enter the size of the array: 5
+Enter the elements of the array: 3
+2
+5
+7
+4
+The arithmetic mean of the array is: 4.20
+
+Enter the size of the array: 5
+Enter the elements of the array: 1
+2
+3
+4
+5
+The arithmetic mean of the array is: 3.00
+
+Enter the size of the array: 5
+Enter the elements of the array: 32
+77
+45
+18
+23
+The arithmetic mean of the array is: 39.00 
+</pre>
+
+    </body>
+</html>

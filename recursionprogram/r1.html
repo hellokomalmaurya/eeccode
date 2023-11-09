@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>index</title>
+        <link rel="stylesheet" href="C:\Users\HP\Desktop\website\database-website\iframecss.css">
+    </head>
+    <body>
+       <h1>Code</h1>
+<pre>#include&lt;stdio.h>
+
+    // Function to calculate factorial using recursion
+    int factorial(int n) {
+        if (n <= 1) {
+            return 1;
+        }
+        return n * factorial(n - 1);
+    }
+    
+    int main() {
+        int num;
+        printf("Enter a number: ");
+        scanf("%d", &num);
+        
+        if (num < 0) {
+            printf("Factorial is not defined for negative numbers.\n");
+        } else {
+            int result = factorial(num);
+            printf("Factorial of %d is %d\n", num, result);
+        }
+        
+        return 0;
+    } 
+<h1>Output</h1>
+Enter a number: 5
+Factorial of 5 is 120
+
+Enter a number: 9
+Factorial of 9 is 362880
+
+Enter a number: 2
+Factorial of 2 is 2
+
+Enter a number: 3
+Factorial of 3 is 6
+
+Enter a number: 4
+Factorial of 4 is 24 
+</pre>
+
+    </body>
+</html>

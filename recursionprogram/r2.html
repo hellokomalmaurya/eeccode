@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>index</title>
+        <link rel="stylesheet" href="C:\Users\HP\Desktop\website\database-website\iframecss.css">
+    </head>
+    <body>
+       <h1>Code</h1>
+<pre>#include&lt;stdio.h>
+
+    // Function to calculate Fibonacci using recursion
+    int fibonacci(int n) {
+        if (n <= 0) {
+            return 0;
+        } else if (n == 1) {
+            return 1;
+        }
+        return fibonacci(n - 1) + fibonacci(n - 2);
+    }
+    
+    int main() {
+        int num;
+        printf("Enter the position in the Fibonacci sequence: ");
+        scanf("%d", &num);
+    
+        if (num < 0) {
+            printf("Fibonacci sequence is not defined for negative positions.\n");
+        } else {
+            int result = fibonacci(num);
+            printf("Fibonacci at position %d is %d\n", num, result);
+        }
+    
+        return 0;
+    }   
+<h1>Output</h1>
+Enter the position in the Fibonacci sequence: 6
+Fibonacci at position 6 is 8
+
+Enter the position in the Fibonacci sequence: 5
+Fibonacci at position 5 is 5
+
+Enter the position in the Fibonacci sequence: 2
+Fibonacci at position 2 is 1
+
+Enter the position in the Fibonacci sequence: 8
+Fibonacci at position 8 is 21
+
+Enter the position in the Fibonacci sequence: 3
+Fibonacci at position 3 is 2
+
+Enter the position in the Fibonacci sequence: 4
+Fibonacci at position 4 is 3
+</pre>
+
+    </body>
+</html>

@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>index</title>
+        <link rel="stylesheet" href="C:\Users\HP\Desktop\website\database-website\iframecss.css">
+    </head>
+    <body>
+       <h1>Code</h1>
+<pre>#include&lt;stdio.h>
+#include&lt;stdlib.h>
+    // Structure to represent a term in a polynomial
+    typedef struct Node{
+        int coefficient;
+        int exponent;
+        struct Node* next;
+    } Node;
+    // Function to create a new term
+    Node* createTerm(int coeff, int exp){
+        Node* newTerm = (Node*)malloc(sizeof(Node));
+        newTerm->coefficient = coeff;
+        newTerm->exponent = exp;
+        newTerm->next = NULL;
+        return newTerm;
+    }
+    // Function to insert a term at the end of the polynomial
+    void insertTerm(Node** head, int coeff, int exp){
+        Node* newTerm = createTerm(coeff, exp);
+        if(*head == NULL){
+            *head = newTerm;
+        } else{
+            Node* current = *head;
+            while(current->next != NULL){
+                current = current->next;
+            }
+            current->next = newTerm;
+        }
+    }
+    // Function to multiply two polynomials
+    Node* multiplyPolynomials(Node* poly1, Node* poly2){
+        Node* result = NULL;
+        Node* temp1 = poly1;
+        while(temp1 != NULL){
+            Node* temp2 = poly2;
+            while(temp2 != NULL){
+                int coeff = temp1->coefficient * temp2->coefficient;
+                int exp = temp1->exponent + temp2->exponent;
+                insertTerm(&result, coeff, exp);
+                temp2 = temp2->next;
+            }
+            temp1 = temp1->next;
+        }
+        return result;
+    }
+    // Function to display a polynomial
+    void displayPolynomial(Node* poly){
+        Node* current = poly;
+        while(current != NULL){
+            printf("%dx^%d ", current->coefficient, current->exponent);
+            if(current->next != NULL){
+                printf("+ ");
+            }
+            current = current->next;
+        }
+        printf("\n");
+    }
+    int main(){
+        Node* poly1 = NULL;
+        Node* poly2 = NULL;
+        // Input the first polynomial
+        int n, coeff, exp;
+        printf("Enter the number of terms in the first polynomial: ");
+        scanf("%d", &n);
+        printf("Enter the coefficients and exponents for each term:\n");
+        for(int i = 0; i < n; i++){
+            scanf("%d %d", &coeff, &exp);
+            insertTerm(&poly1, coeff, exp);
+        }
+        // Input the second polynomial
+        printf("Enter the number of terms in the second polynomial: ");
+        scanf("%d", &n);
+        printf("Enter the coefficients and exponents for each term:\n");
+        for(int i = 0; i < n; i++){
+            scanf("%d %d", &coeff, &exp);
+            insertTerm(&poly2, coeff, exp);
+        }
+        printf("First polynomial: ");
+        displayPolynomial(poly1);
+        printf("Second polynomial: ");
+        displayPolynomial(poly2);
+        Node* result = multiplyPolynomials(poly1, poly2);
+        printf("Resultant polynomial: ");
+        displayPolynomial(result);
+        // Free the memory allocated for the linked lists
+        while(poly1 != NULL){
+            Node* temp = poly1;
+            poly1 = poly1->next;
+            free(temp);
+        }
+        while(poly2 != NULL){
+            Node* temp = poly2;
+            poly2 = poly2->next;
+            free(temp);
+        }
+        while(result != NULL){
+            Node* temp = result;
+            result = result->next;
+            free(temp);
+        }
+        return 0;
+    }
+<h1>Output</h1>
+Enter the number of terms in the first polynomial: 3
+    Enter the coefficients and exponents for each term:
+    3
+    4
+    4
+    3
+    2
+    2
+    Enter the number of terms in the second polynomial: 3
+    Enter the coefficients and exponents for each term:
+    2
+    4
+    4
+    3
+    2
+    2
+    First polynomial: 3x^4 + 4x^3 + 2x^2 
+    Second polynomial: 2x^4 + 4x^3 + 2x^2
+    Resultant polynomial: 6x^8 + 12x^7 + 6x^6 + 8x^7 + 16x^6 + 8x^5 + 4x^6 + 8x^5 + 4x^4
+</pre>
+
+    </body>
+</html>

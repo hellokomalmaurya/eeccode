@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>index</title>
+        <link rel="stylesheet" href="C:\Users\HP\Desktop\website\database-website\iframecss.css">
+    </head>
+    <body>
+       <h1>Code</h1>
+<pre>
+#include&lt;stdio.h>
+#include&lt;stdlib.h>
+#include&lt;string.h>
+    
+    #define MAX_DEQUE_SIZE 100
+    #define MAX_STRING_LENGTH 100
+    
+    typedef struct {
+        char* array[MAX_DEQUE_SIZE];
+        int front, rear, size;
+    } StringDeque;
+    
+    StringDeque* createStringDeque() {
+        StringDeque* deque = (StringDeque*)malloc(sizeof(StringDeque));
+        if (!deque) {
+            return NULL;
+        }
+        for (int i = 0; i < MAX_DEQUE_SIZE; i++) {
+            deque->array[i] = (char*)malloc(sizeof(char) * MAX_STRING_LENGTH);
+        }
+        deque->front = -1;
+        deque->rear = -1;
+        deque->size = 0;
+        return deque;
+    }
+    
+    int isStringDequeEmpty(StringDeque* deque) {
+        return (deque->size == 0);
+    }
+    
+    int isStringDequeFull(StringDeque* deque) {
+        return (deque->size == MAX_DEQUE_SIZE);
+    }
+    
+    void insertFrontStringDeque(StringDeque* deque, const char* item) {
+        if (isStringDequeFull(deque)) {
+            printf("Deque is full. Cannot insert at the front: %s\n", item);
+            return;
+        }
+        if (deque->front == -1) {
+            deque->front = deque->rear = 0;
+        } else if (deque->front == 0) {
+            deque->front = MAX_DEQUE_SIZE - 1;
+        } else {
+            deque->front--;
+        }
+        strcpy(deque->array[deque->front], item);
+        deque->size++;
+        printf("%s has been inserted at the front of the deque.\n", item);
+    }
+    
+    void insertRearStringDeque(StringDeque* deque, const char* item) {
+        if (isStringDequeFull(deque)) {
+            printf("Deque is full. Cannot insert at the rear: %s\n", item);
+            return;
+        }
+        if (deque->rear == -1) {
+            deque->front = deque->rear = 0;
+        } else if (deque->rear == MAX_DEQUE_SIZE - 1) {
+            deque->rear = 0;
+        } else {
+            deque->rear++;
+        }
+        strcpy(deque->array[deque->rear], item);
+        deque->size++;
+        printf("%s has been inserted at the rear of the deque.\n", item);
+    }
+    
+    char* deleteFrontStringDeque(StringDeque* deque) {
+        if (isStringDequeEmpty(deque)) {
+            printf("Deque is empty. Cannot delete from the front.\n");
+            return NULL;
+        }
+        char* item = deque->array[deque->front];
+        if (deque->front == deque->rear) {
+            deque->front = deque->rear = -1;
+        } else if (deque->front == MAX_DEQUE_SIZE - 1) {
+            deque->front = 0;
+        } else {
+            deque->front++;
+        }
+        deque->size--;
+        return item;
+    }
+    
+    char* deleteRearStringDeque(StringDeque* deque) {
+        if (isStringDequeEmpty(deque)) {
+            printf("Deque is empty. Cannot delete from the rear.\n");
+            return NULL;
+        }
+        char* item = deque->array[deque->rear];
+        if (deque->front == deque->rear) {
+            deque->front = deque->rear = -1;
+        } else if (deque->rear == 0) {
+            deque->rear = MAX_DEQUE_SIZE - 1;
+        } else {
+            deque->rear--;
+        }
+        deque->size--;
+        return item;
+    }
+    
+    char* peekFrontStringDeque(StringDeque* deque) {
+        if (isStringDequeEmpty(deque)) {
+            printf("Deque is empty. No element to peek from the front.\n");
+            return NULL;
+        }
+        return deque->array[deque->front];
+    }
+    
+    char* peekRearStringDeque(StringDeque* deque) {
+        if (isStringDequeEmpty(deque)) {
+            printf("Deque is empty. No element to peek from the rear.\n");
+            return NULL;
+        }
+        return deque->array[deque->rear];
+    }
+    
+    int main() {
+        StringDeque* deque = createStringDeque();
+    
+        insertFrontStringDeque(deque, "Apple");
+        insertRearStringDeque(deque, "Banana");
+        insertFrontStringDeque(deque, "Cherry");
+    
+        printf("Front Peek: %s, Rear Peek: %s\n", peekFrontStringDeque(deque), peekRearStringDeque(deque));
+    
+        printf("Deleted from Front: %s\n", deleteFrontStringDeque(deque));
+        printf("Deleted from Rear: %s\n", deleteRearStringDeque(deque));
+    
+        printf("Front Peek: %s, Rear Peek: %s\n", peekFrontStringDeque(deque), peekRearStringDeque(deque));
+    
+        free(deque);
+    
+        return 0;
+    }     
+<h1>Output</h1>
+Apple has been inserted at the front of the deque.
+Banana has been inserted at the rear of the deque.
+Cherry has been inserted at the front of the deque.
+Front Peek: Cherry, Rear Peek: Banana
+Deleted from Front: Cherry
+Deleted from Rear: Banana
+Front Peek: Apple, Rear Peek: Apple
+</pre>
+
+    </body>
+</html>

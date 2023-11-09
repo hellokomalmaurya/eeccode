@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>index</title>
+        <link rel="stylesheet" href="C:\Users\HP\Desktop\website\database-website\iframecss.css">
+    </head>
+    <body>
+       <h1>Code</h1>
+<pre>
+#include&lt;stdio.h>
+#include&lt;stdlib.h>
+
+struct Node {
+    int data;
+    struct Node* next;
+};
+
+struct Graph {
+  // Number of vertices    
+  int V;  
+  // Array of adjacency lists
+  struct Node** adjList;  
+};
+
+// Function to create a new node
+struct Node* createNode(int data) {
+    struct Node* newNode = (struct Node*)
+   malloc(sizeof(struct Node));
+    newNode->data = data;
+    newNode->next = NULL;
+    return newNode;
+}
+
+// Function to create a graph with 'V' vertices
+struct Graph* createGraph() {
+    struct Graph* graph = (struct Graph*)
+    malloc(sizeof(struct Graph));
+    graph->V = 0;
+    graph->adjList = NULL;
+
+    return graph;
+}
+
+// Function to add a vertex to the graph
+void addVertex(struct Graph* graph) {
+    graph->V++;
+    graph->adjList = (struct Node*)realloc
+   (graph->adjList, graph->V * sizeof(struct Node));
+    graph->adjList[graph->V - 1] = NULL;
+}
+
+// Function to add an edge from vertex 'src' to 
+vertex 'dest'
+void addEdge(struct Graph*graph,int src,int dest) {
+    struct Node* newNode = createNode(dest);
+    newNode->next = graph->adjList[src];
+    graph->adjList[src] = newNode;
+}
+
+// Function to remove an edge from vertex 'src' to 
+vertex 'dest'
+void removeEdge(struct Graph*graph,int src,int dest) {
+    struct Node* current = graph->adjList[src];
+    struct Node* prev = NULL;
+
+    while (current != NULL) {
+    if (current->data == dest) {
+      if (prev != NULL) {
+       prev->next = current->next;
+        } else {
+     graph->adjList[src] = current->next;
+            }
+            free(current);
+            return;
+        }
+        prev = current;
+        current = current->next;
+    }
+}
+
+// Function to print the adjacency list of the graph
+void printGraph(struct Graph* graph) {
+    for (int i = 0; i &lt; graph->V; i++) {
+        struct Node* current = graph->adjList[i];
+        printf("Adjacency list of vertex %d: ", i);
+        while (current) {
+            printf("%d -> ", current->data);
+            current = current->next;
+        }
+        printf("NULL\n");
+    }
+}
+
+int main() {
+    struct Graph* graph = createGraph();
+
+    int choice, src, dest;
+    while (1) {
+        printf("\nChoose an operation:\n");
+        printf("1. Add Vertex\n");
+        printf("2. Insert Edge\n");
+        printf("3. Delete Edge\n");
+        printf("4. Print Graph\n");
+        printf("5. Exit\n");
+        printf("Enter your choice: ");
+        scanf("%d", &choice);
+
+ switch (choice) {
+ case 1: addVertex(graph);
+         printf("Vertex added with index %d.\n", graph->V - 1);
+         break;
+ case 2: printf("Enter source and destination: ");
+         scanf("%d %d", &src, &dest);
+ if (src >= 0 && src &lt; graph->V && dest >= 0 && dest &lt; graph->V) 
+ {
+ addEdge(graph, src, dest);
+ printf("Edge (%d, %d) inserted.\n", src, dest);
+ } else {
+ printf("Invalid vertices. Please re-enter.\n");
+ }
+        break;
+ case 3: printf("Enter source and destination: ");
+         scanf("%d %d", &src, &dest);
+ if (src >= 0 && src &lt; graph->V && dest >= 0 && dest < graph->V) 
+ {
+ removeEdge(graph, src, dest);
+ printf("Edge (%d, %d) deleted.\n", src, dest);
+ } else {
+ printf("Invalid vertices. Please re-enter.\n");
+ }
+        break;
+ case 4: printGraph(graph);
+        break;
+ case 5: printf("Exiting the program.\n");
+        return 0;
+ default: printf("Invalid choice. Please try again.\n");
+        }
+    }
+
+    return 0;
+}  
+<h1>Output</h1>
+Choose an operation:
+1. Add Vertex
+2. Insert Edge
+3. Delete Edge
+4. Print Graph
+5. Exit
+Enter your choice: 1
+Vertex added with index 0.
+
+Choose an operation:
+1. Add Vertex
+2. Insert Edge
+3. Delete Edge
+4. Print Graph
+5. Exit
+Enter your choice: 1
+1Vertex added with index 1.
+
+Choose an operation:
+1. Add Vertex
+2. Insert Edge
+3. Delete Edge
+4. Print Graph
+5. Exit
+Enter your choice: 1
+Vertex added with index 2.
+
+Choose an operation:
+1. Add Vertex
+2. Insert Edge
+3. Delete Edge
+4. Print Graph
+5. Exit
+Enter your choice: 1
+Vertex added with index 3.
+
+Choose an operation:
+1. Add Vertex
+2. Insert Edge
+3. Delete Edge
+4. Print Graph
+5. Exit
+Enter your choice: 1
+Vertex added with index 4.
+
+Choose an operation:
+1. Add Vertex
+2. Insert Edge
+3. Delete Edge
+4. Print Graph
+5. Exit
+Enter your choice: 2
+Enter source and destination: 1 1
+Edge (1, 1) inserted.
+
+Choose an operation:
+1. Add Vertex
+2. Insert Edge
+3. Delete Edge
+4. Print Graph
+5. Exit
+Enter your choice: 2 
+Enter source and destination: 1 2
+Edge (1, 2) inserted.
+
+Choose an operation:
+1. Add Vertex
+2. Insert Edge
+3. Delete Edge
+4. Print Graph
+5. Exit
+Enter your choice: 2
+Enter source and destination: 1 4
+Edge (1, 4) inserted.
+
+Choose an operation:
+1. Add Vertex
+2. Insert Edge
+3. Delete Edge
+4. Print Graph
+5. Exit
+Enter your choice: 2
+Enter source and destination: 2 1
+Edge (2, 1) inserted.
+
+Choose an operation:
+1. Add Vertex
+2. Insert Edge
+3. Delete Edge
+4. Print Graph
+5. Exit
+Enter your choice: 2 
+Enter source and destination: 2 3
+Edge (2, 3) inserted.
+
+Choose an operation:
+1. Add Vertex
+2. Insert Edge
+3. Delete Edge
+4. Print Graph
+5. Exit
+Enter your choice: 2
+Enter source and destination: 3 2
+Edge (3, 2) inserted.
+
+Choose an operation:
+1. Add Vertex
+2. Insert Edge
+3. Delete Edge
+4. Print Graph
+5. Exit
+Enter your choice: 2
+Enter source and destination: 3 4
+Edge (3, 4) inserted.
+
+Choose an operation:
+1. Add Vertex
+2. Insert Edge
+3. Delete Edge
+4. Print Graph
+5. Exit
+Enter your choice: 2
+Enter source and destination: 4 1
+Edge (4, 1) inserted.
+
+Choose an operation:
+1. Add Vertex
+2. Insert Edge
+3. Delete Edge
+4. Print Graph
+5. Exit
+Enter your choice: 2
+Enter source and destination: 4 3
+Edge (4, 3) inserted.
+
+Choose an operation:
+1. Add Vertex
+2. Insert Edge
+3. Delete Edge
+4. Print Graph
+5. Exit
+Enter your choice: 2
+Enter source and destination: 4
+4
+Edge (4, 4) inserted.
+
+Choose an operation:
+1. Add Vertex
+2. Insert Edge
+3. Delete Edge
+4. Print Graph
+5. Exit
+Enter your choice: 4
+Adjacency list of vertex 0: 
+NULL
+Adjacency list of vertex 1: 
+4 -> 2 -> 1 -> NULL
+Adjacency list of vertex 2: 
+3 -> 1 -> NULL
+Adjacency list of vertex 3: 
+4 -> 2 -> NULL
+Adjacency list of vertex 4: 
+4 -> 3 -> 1 -> NULL
+
+Choose an operation:
+1. Add Vertex
+2. Insert Edge
+3. Delete Edge
+4. Print Graph
+5. Exit
+Enter your choice: 3
+Enter source and destination: 4 3
+Edge (4, 3) deleted.
+
+Choose an operation:
+1. Add Vertex
+2. Insert Edge
+3. Delete Edge
+4. Print Graph
+5. Exit
+Enter your choice: 4
+Adjacency list of vertex 0: 
+NULL
+Adjacency list of vertex 1: 
+4 -> 2 -> 1 -> NULL
+Adjacency list of vertex 2: 
+3 -> 1 -> NULL
+Adjacency list of vertex 3: 
+4 -> 2 -> NULL
+Adjacency list of vertex 4: 
+4 -> 1 -> NULL
+
+Choose an operation:
+1. Add Vertex
+2. Insert Edge
+3. Delete Edge
+4. Print Graph
+5. Exit
+Enter your choice: 5
+Exiting the program.
+</pre>
+
+    </body>
+</html>

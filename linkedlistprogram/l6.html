@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>index</title>
+        <link rel="stylesheet" href="C:\Users\HP\Desktop\website\database-website\iframecss.css">
+    </head>
+    <body>
+       <h1>Code</h1>
+<pre>//Single circular linked list storing string values
+#include&lt;stdio.h>  
+#include&lt;stdlib.h>  
+struct node{  
+    char data[15];  
+    struct node *next;   
+};  
+struct node *head;  
+void beginsert();   
+void lastinsert();  
+void randominsert();  
+void begindelete();  
+void lastdelete();  
+void randomdelete();  
+void display();  
+void search();  
+void main(){
+    int choice;  
+    while(1){
+        printf("\n1. Insert in begining\n2. Insert at last\n3. Insert at random location\n4. Delete from Beginning\n5. Delete from last\n6. Delete from random location\n7. Search for an element\n8. Show\n9. to check it is full\n10. to check it is empty\n11. Exit\nPress : ");  
+        scanf("\n%d",&choice);  
+        switch(choice){
+            case 1: beginsert();      
+                    break;  
+            case 2: lastinsert();         
+                    break; 
+            case 3: randominsert();
+                    break;
+            case 4: begindelete();       
+                    break;  
+            case 5: lastdelete();        
+                    break;
+            case 6: randomdelete();
+                    break;
+            case 7: search();         
+                    break;  
+            case 8: display();        
+                    break; 
+            case 9: isFull();
+                    break;
+            case 10: isEmpty();
+                    break;
+            case 11: printf("Exited!");
+                    exit(0);  
+                    break;  
+            default: printf("Please enter valid choice..");  
+        }
+    }
+}  
+void isFull(){
+    if(head==NULL)
+    printf("Linked List is full");
+    else
+    printf("Linked List is not full");
+}
+void isEmpty(){
+    if(head==NULL)
+    printf("Linked List is empty");
+    else
+    printf("Linked List is not empty");
+}
+void beginsert(){  
+    struct node *ptr,*temp;   
+    char item[15];   
+    ptr = (struct node *)malloc(sizeof(struct node));  
+    if(ptr == NULL){  
+        printf("OVERFLOW");  
+    }  
+    else{
+        printf("Enter the value to insert :");  
+        scanf("%s",&(ptr->data));  
+        if(head == NULL){  
+            head = ptr;  
+            ptr -> next = head;  
+        }  
+        else{     
+            temp = head;  
+            while(temp->next != head)  
+            temp = temp->next;  
+            ptr->next = head;   
+            temp -> next = ptr;   
+            head = ptr;  
+        }   
+        printf("Inserted value is : %s",ptr->data);  
+    }
+}  
+void lastinsert(){  
+    struct node *ptr,*temp;   
+    char item[15];  
+    ptr = (struct node *)malloc(sizeof(struct node));  
+    if(ptr == NULL){  
+        printf("OVERFLOW");  
+    }  
+    else{  
+        printf("Enter the value to insert : ");  
+        scanf("%s",&(ptr->data));  
+        if(head == NULL){  
+            head = ptr;  
+            ptr -> next = head;    
+        }  
+        else{  
+            temp = head;  
+            while(temp -> next != head){  
+                temp = temp -> next;  
+            }  
+            temp -> next = ptr;   
+            ptr -> next = head;  
+        }  
+        printf("Inserted value is : %s",ptr->data);  
+    }
+}  
+void randominsert(){  
+    int i,loc;
+    char item[15];   
+    struct node *ptr, *temp;  
+    ptr = (struct node *) malloc (sizeof(struct node));  
+    if(ptr == NULL){  
+        printf("Overflow");  
+    }  
+    else{  
+        printf("Enter element value : ");  
+        scanf("%s",&(ptr->data));  
+        ptr->next=head;
+        printf("\nEnter the location after which you want to insert : ");  
+        scanf("%d",&loc);  
+        temp=head;  
+        for(i=0;i < loc-1;i++){  
+            temp = temp->next;  
+            if(temp == NULL){  
+                printf("Can't insert");  
+                return;  
+            }
+        }  
+        ptr ->next = temp ->next;   
+        temp ->next = ptr;   
+        printf("The inserted value is : %s",ptr->data);  
+    }  
+}  
+void begindelete(){  
+    struct node *ptr;   
+    if(head == NULL){  
+        printf("\nUnderflow");    
+    }  
+    else if(head->next == head){  
+        printf("The deleted values is : %s",head->data);
+        head = NULL;  
+        free(head);  
+    }
+    else{
+        ptr = head;   
+        while(ptr -> next != head)  
+        ptr = ptr -> next;   
+        ptr->next = head->next; 
+        printf("The deleted values is : %s",head->data);
+        free(head);  
+        head = ptr->next;  
+    }  
+}  
+void lastdelete(){  
+    struct node *ptr, *preptr;  
+    if(head==NULL){  
+        printf("\nUnderflow");  
+    }  
+    else if(head ->next == head){  
+        printf("The deleted values is : %s",head->data);
+        head = NULL;
+        free(head);  
+    }  
+    else{  
+        ptr = head;  
+        while(ptr ->next != head){  
+            preptr=ptr;  
+            ptr = ptr->next;  
+        }  
+        preptr->next = ptr -> next; 
+        printf("The deleted values is : %s",ptr->data);
+        free(ptr);  
+    }
+}  
+void randomdelete(){  
+    struct node *ptr,*ptr1;  
+    int loc,i;    
+    printf("\n Enter the location of the node after which you want to perform deletion : ");  
+    scanf("%d",&loc);  
+    ptr=head;  
+    for(i=0;i < loc;i++){  
+        ptr1 = ptr;       
+        ptr = ptr->next;
+        if(ptr == NULL){  
+            printf("\nCan't delete");  
+            return;  
+        }  
+    }  
+    ptr1 ->next = ptr ->next; 
+    printf("Deleted node is : %s ",ptr->data);
+    free(ptr);  
+}  
+void search(){  
+    struct node *ptr;  
+    char item[15];
+    int i=0; 
+    ptr = head;   
+    if(head == NULL){  
+        printf("\nEmpty List\n");  
+    }  
+    else{
+        printf("\nEnter item which you want to search? : \n");   
+        scanf("%s",&item);  
+        do{
+            if(!strcmp(ptr->data,item)){
+                printf("Item found at location %d ",i+1);  
+                return;
+            }
+            ptr = ptr -> next;  
+            i++;
+        }
+        while(ptr->next != head);
+        printf("Item not found\n");  
+   }
+} 
+void display(){  
+    struct node *ptr;  
+    ptr=head;  
+    if(ptr == NULL){  
+        printf("\nNothing to print");  
+    }     
+    else{
+        printf("Printing values : ");  
+        while(ptr -> next != head){
+            printf("%s\t", ptr -> data);  
+            ptr = ptr -> next;
+        }  
+        printf("%s", ptr -> data);  
+    }
+}
+<h1>Output</h1>
+1. Insert in begining
+2. Insert at last
+3. Insert at random location
+4. Delete from Beginning
+5. Delete from last
+6. Delete from random location
+7. Search for an element
+8. Show
+9. to check it is full
+10. to check it is empty
+11. Exit
+Press : 1
+Enter the value to insert :savita
+Inserted value is : savita
+1. Insert in begining
+2. Insert at last
+3. Insert at random location
+4. Delete from Beginning
+5. Delete from last
+6. Delete from random location
+7. Search for an element
+8. Show
+9. to check it is full
+10. to check it is empty
+11. Exit
+Press : 1
+Enter the value to insert :ishan
+Inserted value is : ishan
+1. Insert in begining
+2. Insert at last
+3. Insert at random location
+4. Delete from Beginning
+5. Delete from last
+6. Delete from random location
+7. Search for an element
+8. Show
+9. to check it is full
+10. to check it is empty
+11. Exit
+Press : 8
+Printing values : ishan savita
+1. Insert in begining
+2. Insert at last
+3. Insert at random location
+4. Delete from Beginning
+5. Delete from last
+6. Delete from random location
+7. Search for an element
+8. Show
+9. to check it is full
+10. to check it is empty
+11. Exit
+Press : 2
+Enter the value to insert : munawar
+Inserted value is : munawar
+1. Insert in begining
+2. Insert at last
+3. Insert at random location
+4. Delete from Beginning
+5. Delete from last
+6. Delete from random location
+7. Search for an element
+8. Show
+9. to check it is full
+10. to check it is empty
+11. Exit
+Press : 8
+Printing values : ishan savita  munawar
+1. Insert in begining
+2. Insert at last
+3. Insert at random location
+4. Delete from Beginning
+5. Delete from last
+6. Delete from random location
+7. Search for an element
+8. Show
+9. to check it is full
+10. to check it is empty
+11. Exit
+Press : 3
+Enter element value : shubman
+
+Enter the location after which you want to insert : 1
+The inserted value is : shubman
+1. Insert in begining
+2. Insert at last
+3. Insert at random location
+4. Delete from Beginning
+5. Delete from last
+6. Delete from random location
+7. Search for an element
+8. Show
+9. to check it is full
+10. to check it is empty
+11. Exit
+Press : 8
+Printing values : ishan shubman savita  munawar
+1. Insert in begining
+2. Insert at last
+3. Insert at random location
+4. Delete from Beginning
+5. Delete from last
+6. Delete from random location
+7. Search for an element
+8. Show
+9. to check it is full
+10. to check it is empty
+11. Exit
+Press : 5
+The deleted values is : munawar
+1. Insert in begining
+2. Insert at last
+3. Insert at random location
+4. Delete from Beginning
+5. Delete from last
+6. Delete from random location
+7. Search for an element
+8. Show
+9. to check it is full
+10. to check it is empty
+11. Exit
+Press : 8
+Printing values : ishan shubman savita
+1. Insert in begining
+2. Insert at last
+3. Insert at random location
+4. Delete from Beginning
+5. Delete from last
+6. Delete from random location
+7. Search for an element
+8. Show
+9. to check it is full
+10. to check it is empty
+11. Exit
+Press : 11
+Exited!
+</pre>
+
+    </body>
+</html>

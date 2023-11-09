@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>index</title>
+        <link rel="stylesheet" href="C:\Users\HP\Desktop\website\database-website\iframecss.css">
+    </head>
+    <body>
+       <h1>Code</h1>
+<pre>#include&lt;stdio.h>
+    #include&lt;stdlib.h>
+        
+        #define MAX_QUEUE_SIZE 5
+        
+        typedef struct {
+            int* array;
+            int front, rear, size;
+        } CircularQueue;
+        
+        CircularQueue* createCircularQueue(int maxSize) {
+            CircularQueue* queue = (CircularQueue*)malloc(sizeof(CircularQueue));
+            if (!queue) {
+                return NULL;
+            }
+            queue->array = (int*)malloc(sizeof(int) * maxSize);
+            if (!queue->array) {
+                free(queue);
+                return NULL;
+            }
+            queue->front = queue->rear = -1;
+            queue->size = maxSize;
+            return queue;
+        }
+        
+        int isCircularQueueFull(CircularQueue* queue) {
+            return ((queue->rear + 1) % queue->size == queue->front);
+        }
+        
+        int isCircularQueueEmpty(CircularQueue* queue) {
+            return (queue->front == -1);
+        }
+        
+        void enqueueCircularQueue(CircularQueue* queue, int item) {
+            if (isCircularQueueFull(queue)) {
+                printf("Queue is full. Cannot insert %d\n", item);
+                return;
+            }
+            if (isCircularQueueEmpty(queue)) {
+                queue->front = queue->rear = 0;
+            } else {
+                queue->rear = (queue->rear + 1) % queue->size;
+            }
+            queue->array[queue->rear] = item;
+            printf("%d has been inserted into the circular queue.\n", item);
+        }
+        
+        int dequeueCircularQueue(CircularQueue* queue) {
+            if (isCircularQueueEmpty(queue)) {
+                printf("Queue is empty. Cannot dequeue.\n");
+                return -1;
+            }
+            int item = queue->array[queue->front];
+            if (queue->front == queue->rear) {
+                queue->front = queue->rear = -1;
+            } else {
+                queue->front = (queue->front + 1) % queue->size;
+            }
+            return item;
+        }
+        
+        int peekCircularQueue(CircularQueue* queue) {
+            if (isCircularQueueEmpty(queue)) {
+                printf("Queue is empty. No element to peek.\n");
+                return -1;
+            }
+            return queue->array[queue->front];
+        }
+        
+        int main() {
+            CircularQueue* queue = createCircularQueue(MAX_QUEUE_SIZE);
+        
+            enqueueCircularQueue(queue, 10);
+            enqueueCircularQueue(queue, 20);
+            enqueueCircularQueue(queue, 30);
+        
+            printf("Peek: %d\n", peekCircularQueue(queue));
+        
+            enqueueCircularQueue(queue, 40);
+            enqueueCircularQueue(queue, 50);
+        
+            printf("Dequeued: %d\n", dequeueCircularQueue(queue));
+            printf("Dequeued: %d\n", dequeueCircularQueue(queue));
+        
+            enqueueCircularQueue(queue, 60);
+            enqueueCircularQueue(queue, 70);
+        
+            free(queue->array);
+            free(queue);
+        
+            return 0;
+        }
+<h1>Output</h1>
+10 has been inserted into the circular queue.
+20 has been inserted into the circular queue.
+30 has been inserted into the circular queue.
+Peek: 10
+40 has been inserted into the circular queue.
+50 has been inserted into the circular queue.
+Dequeued: 10
+Dequeued: 20
+60 has been inserted into the circular queue.
+70 has been inserted into the circular queue. 
+</pre>
+
+    </body>
+</html>

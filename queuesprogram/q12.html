@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>index</title>
+        <link rel="stylesheet" href="C:\Users\HP\Desktop\website\database-website\iframecss.css">
+    </head>
+    <body>
+       <h1>Code</h1>
+<pre>
+#include&lt;stdio.h>
+#include&lt;stdlib.h>
+#include&lt;string.h>
+    
+    typedef struct {
+        char** array;
+        int* priorities;
+        int size;
+        int capacity;
+    } StringPriorityQueue;
+    
+    StringPriorityQueue* createStringPriorityQueue(int initialCapacity) {
+        StringPriorityQueue* queue = (StringPriorityQueue*)malloc(sizeof(StringPriorityQueue));
+        if (!queue) {
+            return NULL;
+        }
+        queue->array = (char**)malloc(sizeof(char*) * initialCapacity);
+        queue->priorities = (int*)malloc(sizeof(int) * initialCapacity);
+        if (!queue->array || !queue->priorities) {
+            free(queue->array);
+            free(queue->priorities);
+            free(queue);
+            return NULL;
+        }
+        for (int i = 0; i < initialCapacity; i++) {
+            queue->array[i] = (char*)malloc(sizeof(char) * 100);
+        }
+        queue->size = 0;
+        queue->capacity = initialCapacity;
+        return queue;
+    }
+    
+    int isStringPriorityQueueEmpty(StringPriorityQueue* queue) {
+        return (queue->size == 0);
+    }
+    
+    int isStringPriorityQueueFull(StringPriorityQueue* queue) {
+        return (queue->size == queue->capacity);
+    }
+    
+    void resizeStringPriorityQueue(StringPriorityQueue* queue) {
+        int newCapacity = queue->capacity * 2;
+        char** newArray = (char**)malloc(sizeof(char*) * newCapacity);
+        int* newPriorities = (int*)malloc(sizeof(int) * newCapacity);
+        if (newArray && newPriorities) {
+            for (int i = 0; i < queue->size; i++) {
+                newArray[i] = (char*)malloc(sizeof(char) * 100);
+                strcpy(newArray[i], queue->array[i]);
+                newPriorities[i] = queue->priorities[i];
+                free(queue->array[i]);
+            }
+            free(queue->array);
+            free(queue->priorities);
+            queue->array = newArray;
+            queue->priorities = newPriorities;
+            queue->capacity = newCapacity;
+        }
+    }
+    
+    void enqueueStringPriorityQueue(StringPriorityQueue* queue, const char* item, int priority) {
+        if (isStringPriorityQueueFull(queue)) {
+            resizeStringPriorityQueue(queue);
+        }
+        int i = queue->size;
+        while (i > 0 && priority < queue->priorities[i - 1]) {
+            strcpy(queue->array[i], queue->array[i - 1]);
+            queue->priorities[i] = queue->priorities[i - 1];
+            i--;
+        }
+        strcpy(queue->array[i], item);
+        queue->priorities[i] = priority;
+        queue->size++;
+        printf("%s with priority %d has been inserted into the priority queue.\n", item, priority);
+    }
+    
+    char* dequeueStringPriorityQueue(StringPriorityQueue* queue) {
+        if (isStringPriorityQueueEmpty(queue)) {
+            printf("Priority Queue is empty. Cannot dequeue.\n");
+            return NULL;
+        }
+        char* item = queue->array[0];
+        for (int i = 1; i < queue->size; i++) {
+            strcpy(queue->array[i - 1], queue->array[i]);
+            queue->priorities[i - 1] = queue->priorities[i];
+        }
+        queue->size--;
+        return item;
+    }
+    
+    char* peekStringPriorityQueue(StringPriorityQueue* queue) {
+        if (isStringPriorityQueueEmpty(queue)) {
+            printf("Priority Queue is empty. No element to peek.\n");
+            return NULL;
+        }
+        return queue->array[0];
+    }
+    
+    int main() {
+        StringPriorityQueue* queue = createStringPriorityQueue(10);
+    
+        enqueueStringPriorityQueue(queue, "Apple", 2);
+        enqueueStringPriorityQueue(queue, "Banana", 1);
+        enqueueStringPriorityQueue(queue, "Cherry", 3);
+    
+        printf("Peek: %s\n", peekStringPriorityQueue(queue));
+    
+        printf("Dequeued: %s\n", dequeueStringPriorityQueue(queue));
+        printf("Peek: %s\n", peekStringPriorityQueue(queue));
+    
+        enqueueStringPriorityQueue(queue, "Date", 1);
+        enqueueStringPriorityQueue(queue, "Fig", 2);
+    
+        printf("Dequeued: %s\n", dequeueStringPriorityQueue(queue));
+        printf("Dequeued: %s\n", dequeueStringPriorityQueue(queue));
+    
+        free(queue->array);
+        free(queue->priorities);
+        free(queue);
+    
+        return 0;
+    }     
+<h1>Output</h1>
+Apple with priority 2 has been inserted into the priority queue.
+Banana with priority 1 has been inserted into the priority queue.
+Cherry with priority 3 has been inserted into the priority queue.
+Peek: Banana
+Dequeued: Apple
+Peek: Apple
+Date with priority 1 has been inserted into the priority queue.
+Fig with priority 2 has been inserted into the priority queue.
+Dequeued: Apple
+Dequeued: Fig
+</pre>
+
+    </body>
+</html>

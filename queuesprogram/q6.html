@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>index</title>
+        <link rel="stylesheet" href="C:\Users\HP\Desktop\website\database-website\iframecss.css">
+    </head>
+    <body>
+       <h1>Code</h1>
+<pre>
+#include&lt;stdio.h>
+#include&lt;stdlib.h>
+#include&lt;string.h>
+        
+        #define MAX_QUEUE_SIZE 5
+        #define MAX_STRING_LENGTH 100
+        
+        typedef struct {
+            char** array;
+            int front, rear, size;
+        } CircularStringQueue;
+        
+        CircularStringQueue* createCircularStringQueue(int maxSize) {
+            CircularStringQueue* queue = (CircularStringQueue*)malloc(sizeof(CircularStringQueue));
+            if (!queue) {
+                return NULL;
+            }
+            queue->array = (char**)malloc(sizeof(char*) * maxSize);
+            if (!queue->array) {
+                free(queue);
+                return NULL;
+            }
+            for (int i = 0; i < maxSize; i++) {
+                queue->array[i] = (char*)malloc(sizeof(char) * MAX_STRING_LENGTH);
+            }
+            queue->front = queue->rear = -1;
+            queue->size = maxSize;
+            return queue;
+        }
+        
+        int isCircularStringQueueFull(CircularStringQueue* queue) {
+            return ((queue->rear + 1) % queue->size == queue->front);
+        }
+        
+        int isCircularStringQueueEmpty(CircularStringQueue* queue) {
+            return (queue->front == -1);
+        }
+        
+        void enqueueCircularStringQueue(CircularStringQueue* queue, const char* item) {
+            if (isCircularStringQueueFull(queue)) {
+                printf("Queue is full. Cannot insert %s\n", item);
+                return;
+            }
+            if (isCircularStringQueueEmpty(queue)) {
+                queue->front = queue->rear = 0;
+            } else {
+                queue->rear = (queue->rear + 1) % queue->size;
+            }
+            strcpy(queue->array[queue->rear], item);
+            printf("%s has been inserted into the circular string queue.\n", item);
+        }
+        
+        char* dequeueCircularStringQueue(CircularStringQueue* queue) {
+            if (isCircularStringQueueEmpty(queue)) {
+                printf("Queue is empty. Cannot dequeue.\n");
+                return NULL;
+            }
+            char* item = queue->array[queue->front];
+            if (queue->front == queue->rear) {
+                queue->front = queue->rear = -1;
+            } else {
+                queue->front = (queue->front + 1) % queue->size;
+            }
+            return item;
+        }
+        
+        char* peekCircularStringQueue(CircularStringQueue* queue) {
+            if (isCircularStringQueueEmpty(queue)) {
+                printf("Queue is empty. No element to peek.\n");
+                return NULL;
+            }
+            return queue->array[queue->front];
+        }
+        
+        int main() {
+            CircularStringQueue* queue = createCircularStringQueue(MAX_QUEUE_SIZE);
+        
+            enqueueCircularStringQueue(queue, "Apple");
+            enqueueCircularStringQueue(queue, "Banana");
+            enqueueCircularStringQueue(queue, "Cherry");
+        
+            printf("Peek: %s\n", peekCircularStringQueue(queue));
+        
+            enqueueCircularStringQueue(queue, "Date");
+            enqueueCircularStringQueue(queue, "Fig");
+        
+            printf("Dequeued: %s\n", dequeueCircularStringQueue(queue));
+            printf("Dequeued: %s\n", dequeueCircularStringQueue(queue));
+        
+            enqueueCircularStringQueue(queue, "Grape");
+            enqueueCircularStringQueue(queue, "Honeydew");
+        
+            free(queue->array);
+            free(queue);
+        
+            return 0;
+        }         
+<h1>Output</h1>
+Apple has been inserted into the circular string queue.
+Banana has been inserted into the circular string queue.
+Cherry has been inserted into the circular string queue.
+Peek: Apple
+Date has been inserted into the circular string queue.
+Fig has been inserted into the circular string queue.
+Dequeued: Apple
+Dequeued: Banana
+Grape has been inserted into the circular string queue.
+Honeydew has been inserted into the circular string queue.
+</pre>
+
+    </body>
+</html>

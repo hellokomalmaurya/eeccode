@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>index</title>
+        <link rel="stylesheet" href="C:\Users\HP\Desktop\website\database-website\iframecss.css">
+    </head>
+    <body>
+       <h1>Code</h1>
+<pre>#include &lt;stdio.h>
+    #include &lt;stdlib.h>
+     #include &lt;string.h>
+        
+        #define MAX_QUEUE_SIZE 100
+        #define MAX_STRING_LENGTH 100
+        
+        typedef struct {
+            char** array;
+            int front, rear, size;
+        } StringQueue;
+        
+        StringQueue* createStringQueue(int maxSize) {
+            StringQueue* queue = (StringQueue*)malloc(sizeof(StringQueue));
+            if (!queue) {
+                return NULL;
+            }
+            queue->array = (char**)malloc(sizeof(char*) * maxSize);
+            if (!queue->array) {
+                free(queue);
+                return NULL;
+            }
+            for (int i = 0; i < maxSize; i++) {
+                queue->array[i] = (char*)malloc(sizeof(char) * MAX_STRING_LENGTH);
+            }
+            queue->front = queue->rear = -1;
+            queue->size = maxSize;
+            return queue;
+        }
+        
+        int isStringQueueFull(StringQueue* queue) {
+            return (queue->rear == queue->size - 1);
+        }
+        
+        int isStringQueueEmpty(StringQueue* queue) {
+            return (queue->front == -1);
+        }
+        
+        void enqueueString(StringQueue* queue, const char* item) {
+            if (isStringQueueFull(queue)) {
+                printf("Queue is full. Cannot insert %s\n", item);
+                return;
+            }
+            if (isStringQueueEmpty(queue)) {
+                queue->front = queue->rear = 0;
+            } else {
+                queue->rear++;
+            }
+            strcpy(queue->array[queue->rear], item);
+            printf("%s has been inserted into the queue.\n", item);
+        }
+        
+        char* dequeueString(StringQueue* queue) {
+            if (isStringQueueEmpty(queue)) {
+                printf("Queue is empty. Cannot dequeue.\n");
+                return NULL;
+            }
+            char* item = queue->array[queue->front];
+            if (queue->front == queue->rear) {
+                queue->front = queue->rear = -1;
+            } else {
+                queue->front++;
+            }
+            return item;
+        }
+        
+        char* peekString(StringQueue* queue) {
+            if (isStringQueueEmpty(queue)) {
+                printf("Queue is empty. No element to peek.\n");
+                return NULL;
+            }
+            return queue->array[queue->front];
+        }
+        
+        int main() {
+            StringQueue* queue = createStringQueue(MAX_QUEUE_SIZE);
+        
+            enqueueString(queue, "Apple");
+            enqueueString(queue, "Banana");
+            enqueueString(queue, "Cherry");
+        
+            printf("Peek: %s\n", peekString(queue));
+        
+            printf("Dequeued: %s\n", dequeueString(queue));
+            printf("Peek: %s\n", peekString(queue));
+        
+            enqueueString(queue, "Date");
+            enqueueString(queue, "Fig");
+        
+            printf("Dequeued: %s\n", dequeueString(queue));
+            printf("Dequeued: %s\n", dequeueString(queue));
+        
+            free(queue->array);
+            free(queue);
+        
+            return 0;
+        }
+<h1>Output</h1>
+Apple has been inserted into the queue.
+Banana has been inserted into the queue.
+Cherry has been inserted into the queue.
+Peek: Apple
+Dequeued: Apple
+Peek: Banana
+Date has been inserted into the queue.
+Fig has been inserted into the queue.
+Dequeued: Banana
+Dequeued: Cherry 
+</pre>
+
+    </body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>index</title>
+        <link rel="stylesheet" href="C:\Users\HP\Desktop\website\database-website\iframecss.css">
+    </head>
+    <body>
+       <h1>Code</h1>
+<pre>#include < stdio.h >
+
+    // Function to convert a decimal number to binary using recursion
+    void decimalToBinary(int n) {
+        if (n > 0) {
+            decimalToBinary(n / 2);
+            printf("%d", n % 2);
+        }
+    }
+    
+    int main() {
+        int num;
+        printf("Enter a decimal number: ");
+        scanf("%d", &num);
+    
+        if (num < 0) {
+            printf("Binary representation is not defined for negative numbers.\n");
+        } else if (num == 0) {
+            printf("Binary representation: 0\n");
+        } else {
+            printf("Binary representation: ");
+            decimalToBinary(num);
+            printf("\n");
+        }
+    
+        return 0;
+    } 
+<h1>Output</h1>
+Enter a decimal number: 12.5
+Binary representation: 1100
+
+Enter a decimal number: 00
+Binary representation: 0
+
+Enter a decimal number: 72
+Binary representation: 1001000 
+</pre>
+
+    </body>
+</html>

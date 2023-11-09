@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>index</title>
+        <link rel="stylesheet" href="C:\Users\HP\Desktop\website\database-website\iframecss.css">
+    </head>
+    <body>
+       <h1>Code</h1>
+<pre>//Implement the operations of single linked list storing integer value
+//(insert at begin,insert at pos,insert at end,delete at begin,delete at end,delete at pos,isempty,isfull,display,search)
+#include&lt;stdio.h>
+#include&lt;conio.h>
+#include&lt;stdlib.h>
+struct node{
+int data;
+struct node *next;
+};
+struct node* atbiggin(struct node *head,int value){
+struct node *ptr=(struct node*) malloc(sizeof(struct node));
+ptr->next=head;
+ptr->data=value;
+return ptr;
+}
+struct node* atpos(struct node *head,int position,int value){
+struct node *ptr=(struct node*) malloc(sizeof(struct node));
+struct node *p=head;
+int i=1;
+while(i!=position-1){
+p=p->next;
+i++;
+}
+ptr->data=value;
+ptr->next=p->next;
+p->next=ptr;
+return head;
+}
+struct node* atend(struct node *head,int value){
+struct node *ptr=(struct node*) malloc(sizeof(struct node));
+struct node *p=head;
+while(p->next!=NULL){
+p=p->next;
+}
+ptr->data=value;
+ptr->next=NULL;
+p->next=ptr;
+return head;
+}
+struct node* delatbeggin(struct node *head){
+struct node *p;
+p=head;
+head=head->next;
+free(p);
+return head;
+}
+struct node* delatpos(struct node *head,int position){
+struct node *p=head,*q;
+int i=1;
+while(i!=position-1){
+p=p->next;
+i++;
+}
+q=p->next;
+p->next=q->next;
+free(q);
+return head;
+}
+struct node* delatend(struct node *head){
+struct node *p=head,*q=head->next;
+while(q->next!=NULL){
+p=p->next;
+q=q->next;
+}
+q=p->next;
+p->next=NULL;
+free(q);
+return head;
+}
+void isempty(struct node *head){
+if(head==NULL){
+printf("List is Empty!");
+}
+else{
+printf("List is not empty!");
+}
+}
+void search(struct node *head,int srch){
+while(head->next!=NULL){
+if(head->data==srch){
+printf("found!");
+break;
+}
+head=head->next;
+}
+if(head->next==NULL){
+printf("Not found!");
+}
+}
+void isfull(struct node *head){
+if(head!=NULL){
+printf("List is full!");
+}
+else{
+printf("Empty!");
+}
+}
+void display(struct node *ptr){
+while(ptr!=NULL){
+printf("%d\t",ptr->data);
+ptr=ptr->next;
+}
+}
+void main(){
+struct node *head;
+struct node *second;
+struct node *third;
+int srch;
+clrscr();
+head=(struct node*) malloc(sizeof(struct node));
+second=(struct node*) malloc(sizeof(struct node));
+third=(struct node*) malloc(sizeof(struct node));
+
+head->data=34;
+head->next=second;
+
+second->data=14;
+second->next=third;
+
+third->data=9;
+third->next=NULL;
+
+printf("current list:\n");
+display(head);
+//INSERTION
+printf("\nInsertion at begin:\n");
+head=atbiggin(head,66);
+display(head);
+
+printf("\nInsert at position:\n");
+head=atpos(head,2,5);
+display(head);
+
+printf("\nInsert at end:\n");
+head=atend(head,93);
+display(head);
+
+//DELETION
+printf("\nDelention at biggin:\n");
+head=delatbeggin(head);
+display(head);
+
+printf("\nDeletion at position:\n");
+head=delatpos(head,2);
+display(head);
+printf("\nDeletion at end:\n");
+head=delatend(head);
+display(head);
+printf("\nEnter element to search: ");
+scanf("%d",&srch);
+search(head,srch);
+
+printf("\ncheck if empty:");
+isempty(head);
+
+printf("\ncheck if full:");
+isfull(head);
+
+printf("\nlist:");
+display(head);
+getch();
+} 
+<h1>Output</h1>
+current list:
+34	14	9	
+Insertion at begin:
+66	34	14	9	
+Insert at position:
+66	5	34	14	9	
+Insert at end:
+66	5	34	14	9	93	
+Delention at biggin:
+5	34	14	9	93	
+Deletion at position:
+5	14	9	93	
+Deletion at end:
+5	14	9	
+Enter element to search: 5
+found!
+check if empty:List is not empty!
+check if full:List is full!
+list:5	14	9	
+</pre>
+
+    </body>
+</html>

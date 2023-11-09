@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>index</title>
+        <link rel="stylesheet" href="C:\Users\HP\Desktop\website\database-website\iframecss.css">
+    </head>
+    <body>
+       <h1>Code</h1>
+<pre>
+#include&lt;stdio.h>
+
+//Function to create Adjacency Matrix
+void createAdjMatrix(int N,int Adj[][N + 1], 
+int arr[][2], int M) {
+//Initialize all values in the adjacency matrix to 0
+    for (int i = 0; i &lt; N + 1; i++) {
+        for (int j = 0; j &lt; N + 1; j++) {
+            Adj[i][j] = 0;
+        }
+    }
+
+    // Traverse the array of edges
+    for (int i = 0; i &lt; M; i++) {
+        int x = arr[i][0];
+        int y = arr[i][1];
+
+// Update the values in the adjacency matrix
+        Adj[x][y] = 1;
+        Adj[y][x] = 1;
+    }
+}
+
+// Function to print the created Adjacency Matrix
+void printAdjMatrix(int N,int Adj[][N + 1]) {
+    // Traverse the adjacency matrix
+    for (int i = 1; i &lt; N + 1; i++) {
+        for (int j = 1; j &lt; N + 1; j++) {
+            printf("%d ", Adj[i][j]);
+        }
+        printf("\n");
+    }
+}
+
+int main() {
+    int N, M;
+
+    // Input the number of vertices
+    printf("Enter the number of vertices: ");
+    scanf("%d", &N);
+
+    // Given Edges
+    printf("Enter the number of edges: ");
+    scanf("%d", &M);
+
+    int arr[M][2];
+
+    for (int i = 0; i &lt; M; i++) {
+    printf("Enter edge %d (start end): ", i + 1);
+    scanf("%d %d", &arr[i][0], &arr[i][1]);
+    }
+
+    // For Adjacency Matrix
+    int Adj[N + 1][N + 1];
+
+    // Function call to create Adjacency Matrix
+    createAdjMatrix(N,Adj, arr, M);
+
+    // Print the Adjacency Matrix
+    printAdjMatrix(N,Adj);
+
+    return 0;
+}   
+<h1>Output</h1>
+Enter the number of vertices: 5
+Enter the number of edges: 4
+Enter edge 1 (start end): 1 2
+Enter edge 2 (start end): 2 3
+Enter edge 3 (start end): 4 5
+Enter edge 4 (start end): 1 5
+0 1 0 0 1 
+1 0 1 0 0 
+0 1 0 0 0 
+0 0 0 0 1 
+1 0 0 1 0  
+</pre>
+
+    </body>
+</html>
