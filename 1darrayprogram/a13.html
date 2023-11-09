@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>index</title>
+        <link rel="stylesheet" href="C:\Users\HP\Desktop\website\database-website\iframecss.css">
+    </head>
+    <body>
+       <h1>Code</h1>
+<pre>//Enter an array from the user and count the duplicates values?
+#include<stdio.h>
+#include<conio.h>
+void main(){
+int arr[5],i,j,count=0;
+clrscr();
+for(i=0;i<5;i++){
+printf("Enter array element on index %d: ",i);
+scanf("%d",&arr[i]);
+}
+for(i=0;i<5;i++){
+for(j=i+1;j<5;j++){
+if(arr[i]==arr[j]){
+count++;
+break;
+}
+}
+}
+printf("There are %d duplicate values",count);
+delay(5000);
+}
+} 
+<h1>Output</h1>
+Enter array element on index 0: 6
+Enter array element on index 1: 78
+Enter array element on index 2: 9
+Enter array element on index 3: 9
+Enter array element on index 4: 5
+There are 1 duplicate values
+</pre>
+
+    </body>
+</html>

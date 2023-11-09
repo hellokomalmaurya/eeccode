@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>index</title>
+        <link rel="stylesheet" href="C:\Users\HP\Desktop\website\database-website\iframecss.css">
+    </head>
+    <body>
+       <h1>Code</h1>
+<pre>//Find the local minima in the array?
+//(An element in an array is a local minima if it is less than the element after it, and the element before it)
+#include&lt;stdio.h>
+#include&lt;conio.h>
+void mini(int arr[],int size){
+int i;
+for(i=1;i&lt;size;i++){
+if(arr[i]&lt;arr[i-1] && arr[i]&lt;arr[i+1]){
+printf("%d",arr[i]);
+}
+}
+}
+void main(){
+int arr[5],i;
+clrscr();
+for(i=0;i&lt;5;i++){
+printf("Enter any integer on index %d: ",i);
+scanf("%d",&arr[i]);
+}
+mini(arr,5);
+delay(4000);
+}
+} 
+<h1>Output</h1>
+Enter any integer on index 0: 34
+Enter any integer on index 1: 5
+Enter any integer on index 2: 4
+Enter any integer on index 3: 45
+Enter any integer on index 4: 45
+4
+</pre>
+
+    </body>
+</html>

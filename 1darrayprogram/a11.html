@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>index</title>
+        <link rel="stylesheet" href="C:\Users\HP\Desktop\website\database-website\iframecss.css">
+    </head>
+    <body>
+       <h1>Code</h1>
+<pre>//Enter an array and find the duplicate values?
+#include&lt;stdio.h>
+#include&lt;conio.h>
+void find(int arr[],int size){
+int i,j;
+printf("Duplicate values are: ");
+for(i=0;i&lt;=size;i++){
+  for(j=i+1;j&lt;size;j++){
+      if(arr[i]==arr[j]){
+      printf("%d\t",arr[i]);
+      }
+  }
+}
+}
+void main(){
+int arr[5],i;
+clrscr();
+for(i=0;i&lt;5;i++){
+printf("Enter array element on index %d: ",i);
+scanf("%d",&arr[i]);
+}
+find(arr,5);
+delay(4000);
+}
+} 
+<h1>Output</h1>
+Enter array element on index 0: 3
+Enter array element on index 1: 2
+Enter array element on index 2: 4
+Enter array element on index 3: 4
+Enter array element on index 4: 3
+Duplicate values are: 3	4
+</pre>
+
+    </body>
+</html>

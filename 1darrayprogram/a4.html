@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>index</title>
+        <link rel="stylesheet" href="C:\Users\HP\Desktop\website\database-website\iframecss.css">
+    </head>
+    <body>
+       <h1>Code</h1>
+<pre>
+//Enter an array from the user and copy it into another array in reverse
+//order?
+#include &lt;stdio.h>
+void main() {
+    int n;
+    printf("Enter the size of the array: ");
+    scanf("%d", &n);
+    
+    if (n &lt;= 0) {
+        printf("Invalid array size. Please enter a positive integer.\n");
+        return 1;
+    }
+
+    int originalArray[n], reversedArray[n];
+    printf("Enter %d elements for the array:\n", n);
+    for (int i = 0; i &lt; n; i++) {
+        scanf("%d", &originalArray[i]);
+    }
+    for (int i = 0; i &lt; n; i++) {
+        reversedArray[n - i - 1] = originalArray[i];
+    }
+
+    printf("Original Array: ");
+    for (int i = 0; i &lt; n; i++) {
+        printf("%d ", originalArray[i]);
+    }
+
+    printf("\nReversed Array: ");
+    for (int i = 0; i &lt; n; i++) {
+        printf("%d ", reversedArray[i]);
+    }
+}
+} 
+<h1>Output</h1>
+Enter the size of the array: 5
+Enter 5 elements for the array:
+44
+44
+34
+22
+6
+Original Array: 44 44 34 22 6 
+Reversed Array: 6 22 34 44 44 
+</pre>
+
+    </body>
+</html>

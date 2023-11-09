@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>index</title>
+        <link rel="stylesheet" href="C:\Users\HP\Desktop\website\database-website\iframecss.css">
+    </head>
+    <body>
+       <h1>Code</h1>
+<pre>//Enter an array from the user and print all the palindrone numbers?
+#include&lt;stdio.h>
+#include&lt;conio.h>
+int palindrone(int num){
+int rev=0,rem,n=num;
+while(num>0){
+rem=num%10;
+rev=(rev*10)+rem;
+num=num/10;
+}
+if(n==rev){
+return n;
+}
+else{
+return 0;
+}
+}
+void main(){
+int arr[5],i,result;
+clrscr();
+for(i=0;i&lt;5;i++){
+printf("Enter any integer on index %d :",i);
+scanf("%d",&arr[i]);
+}
+printf("\nPalindrone numbers are:\n");
+for(i=0;i&lt;5;i++){
+result=palindrone(arr[i]);
+if(result!=0){
+printf("%d\t",result);
+}
+}
+delay(5000);
+}
+} 
+<h1>Output</h1>
+Enter any integer on index 0 :23
+Enter any integer on index 1 :767
+Enter any integer on index 2 :1221
+Enter any integer on index 3 :99
+Enter any integer on index 4 :78
+Palindrone numbers are:
+767	1221	99
+</pre>
+
+    </body>
+</html>

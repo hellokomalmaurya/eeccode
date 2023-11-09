@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>index</title>
+        <link rel="stylesheet" href="C:\Users\HP\Desktop\website\database-website\iframecss.css">
+    </head>
+    <body>
+       <h1>Code</h1>
+<pre>//Enter the matrix from user, multiply it with a scalar value and display the answer.
+#include&lt;stdio.h>
+#include&lt;conio.h>
+void main(){
+int arr1[3][2],arr2[3][2],sValue,i,j;
+clrscr();
+for(i=0;i&lt;3;i++){
+for(j=0;j&lt;2;j++){
+printf("Enter the matrix element at index [%d][%d]:",i,j);
+scanf("%d",&arr1[i][j]);
+}
+}
+printf("Enter a scalar value: ");
+scanf("%d",&sValue);
+for(i=0;i&lt;3;i++){
+for(j=0;j&lt;2;j++){
+arr2[i][j]=arr1[i][j]*sValue;
+}
+}
+for(i=0;i&lt;3;i++){
+for(j=0;j&lt;2;j++){
+printf("%d\t",arr2[i][j]);
+}
+printf("\n");
+}
+getch();
+}
+
+} 
+<h1>Output</h1>
+Enter the matrix element at index [0][0]:56
+Enter the matrix element at index [0][1]:4
+Enter the matrix element at index [1][0]:6
+Enter the matrix element at index [1][1]:4
+Enter the matrix element at index [2][0]:3
+Enter the matrix element at index [2][1]:7
+Enter a scalar value2
+112	8	
+12	8	
+6	14	 
+</pre>
+
+    </body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>index</title>
+        <link rel="stylesheet" href="C:\Users\HP\Desktop\website\database-website\iframecss.css">
+    </head>
+    <body>
+       <h1>Code</h1>
+<pre>//Find the local maxima in the array?
+//(An element in an array is a local maxima if it is greater than the element after it, and the element before it)
+#include&lt;stdio.h>
+#include&lt;conio.h>
+void maxi(int arr[],int size){
+int i;
+for(i=1;i&lt;size;i++){
+if(arr[i]>arr[i-1] && arr[i]>arr[i+1]){
+printf("%d ",arr[i]);
+}
+}
+}
+void main(){
+int arr[5],i;
+clrscr();
+for(i=0;i&lt;5;i++){
+printf("Enter any integer on index %d: ",i);
+scanf("%d",&arr[i]);
+}
+maxi(arr,5);
+delay(4000);
+}
+} 
+<h1>Output</h1>
+Enter any integer on index 0: 56
+Enter any integer on index 1: 89
+Enter any integer on index 2: 33
+Enter any integer on index 3: 55
+Enter any integer on index 4: 14
+89 55  
+</pre>
+
+    </body>
+</html>

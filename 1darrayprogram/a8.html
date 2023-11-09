@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>index</title>
+        <link rel="stylesheet" href="C:\Users\HP\Desktop\website\database-website\iframecss.css">
+    </head>
+    <body>
+       <h1>Code</h1>
+<pre>//Enter an array from the user and print the maximum and minimum value?
+#include&lt;stdio.h>
+#include&lt;conio.h>
+void minmax(int arr[],int size){
+int max=arr[0],min=arr[0],i;
+for(i=0;i&lt;size;i++){
+if(max&lt;arr[i]){
+max=arr[i];
+}
+if(min&lt;arr[i]){
+min=arr[i];
+}
+}
+printf("Maximum value:%d and Minimum value is:%d",max,min);
+}
+void main(){
+int arr[5],i;
+clrscr();
+for(i=0;i&lt;5;i++){
+printf("Enter an integer on index %d:",i);
+scanf("%d",&arr[i]);
+}
+minmax(arr,5);
+getch();
+}
+} 
+<h1>Output</h1>
+Enter an integer on index 0:45
+Enter an integer on index 1:7
+Enter an integer on index 2:5
+Enter an integer on index 3:2
+Enter an integer on index 4:67
+Maximum value:67 and Minimum value is:2
+</pre>
+
+    </body>
+</html>

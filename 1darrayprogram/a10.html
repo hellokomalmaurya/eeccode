@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>index</title>
+        <link rel="stylesheet" href="C:\Users\HP\Desktop\website\database-website\iframecss.css">
+    </head>
+    <body>
+       <h1>Code</h1>
+<pre>//Enter an array from the user and add all the value?
+#include&lt;stdio.h>
+#include&lt;conio.h>
+int sum(int arr[],int size){
+int i,add=0;
+for(i=0;i&lt;size;i++){
+add=arr[i]+add;
+}
+return add;
+}
+void main(){
+int arr[5],i,get;
+clrscr();
+for(i=0;i&lt;5;i++){
+printf("Enter any integer on index %d: ",i);
+scanf("%d",&arr[i]);
+}
+get=sum(arr,5);
+printf("\nThe total sum of the values is: %d",get);
+delay(4000);
+}
+
+} 
+<h1>Output</h1>
+Enter any integer on index 0: 5
+Enter any integer on index 1: 665
+Enter any integer on index 2: 3
+Enter any integer on index 3: 56
+Enter any integer on index 4: 6
+The total sum of the values is: 735
+</pre>
+
+    </body>
+</html>
