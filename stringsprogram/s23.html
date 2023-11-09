@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>index</title>
+        <link rel="stylesheet" href="C:\Users\HP\Desktop\website\database-website\iframecss.css">
+    </head>
+    <body>
+       <h1>Code</h1>
+<pre>//Enter a sentence from the user and then enter the word and count the occurence of that word in the sentence.
+#include&lt;stdio.h>
+#include&lt;conio.h>
+#include&lt;string.h>
+void main(){
+char sentence[50];
+char word[20];
+int count=0,i,j,match,s_len,w_len;
+clrscr();
+printf("Enter a sentence: ");
+gets(sentence);
+printf("Enter a word to count: ");
+gets(word);
+s_len=strlen(sentence);
+w_len=strlen(word);
+for(i=0;i&lt;s_len-w_len+1;i++){
+match=1;
+for(j=0;j&lt;w_len;j++){
+if(sentence[i+j]!=word[j]){
+match=0;
+break;
+}
+}
+if(match){
+count++;
+}
+}
+printf("The word '%s' appears %d times in the sentence.\n",word,count);
+getch();
+}
+<h1>Output</h1>
+Enter a sentence: Every time she moves on she said.
+Enter a word to count: she
+The word 'she' appears 2 times in the sentence.
+</pre>
+
+    </body>
+</html>

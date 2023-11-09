@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>index</title>
+        <link rel="stylesheet" href="C:\Users\HP\Desktop\website\database-website\iframecss.css">
+    </head>
+    <body>
+       <h1>Code</h1>
+<pre>
+#include&lt;stdio.h>
+#include&lt;stdlib.h>
+    
+    // Structure for a BST node
+    struct Node {
+        int data;
+        struct Node* left;
+        struct Node* right;
+    };
+    
+    // Function to create a new BST node
+    struct Node* newNode(int data) {
+        struct Node* node = (struct Node*)malloc(sizeof(struct Node));
+        node->data = data;
+        node->left = node->right = NULL;
+        return node;
+    }
+    
+    // Function to print Preorder traversal
+    void printPreorder(struct Node* node) {
+        if (node != NULL) {
+            printf("%d ", node->data);
+            printPreorder(node->left);
+            printPreorder(node->right);
+        }
+    }
+    
+    // Function to convert Preorder to Postorder
+    void preorderToPostorder(struct Node* node) {
+        if (node != NULL) {
+            preorderToPostorder(node->left);
+            preorderToPostorder(node->right);
+            printf("%d ", node->data);
+        }
+    }
+    
+    // Driver program
+    int main() {
+        // Creating a sample BST
+        struct Node* root = newNode(10);
+        root->left = newNode(5);
+        root->right = newNode(20);
+        root->left->left = newNode(3);
+        root->left->right = newNode(7);
+    
+        // Print Preorder traversal
+        printf("Preorder traversal: ");
+        printPreorder(root);
+        
+        // Convert and print Preorder to Postorder
+        printf("\nPostorder traversal: ");
+        preorderToPostorder(root);
+    
+        return 0;
+    }    
+<h1>Output</h1>
+Preorder traversal: 10 5 3 7 20 
+Postorder traversal: 3 7 5 20 10 
+</pre>
+
+    </body>
+</html>

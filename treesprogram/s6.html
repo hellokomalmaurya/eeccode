@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>index</title>
+        <link rel="stylesheet" href="C:\Users\HP\Desktop\website\database-website\iframecss.css">
+    </head>
+    <body>
+       <h1>Code</h1>
+<pre>
+#include&lt;stdio.h>
+#include&lt;stdlib.h>
+struct node {
+    int data;
+    struct node* left;
+    struct node* right;
+};
+int search(int arr[], int strt, int end, int value);
+struct node* buildTree(int in[], int pre[], int inStrt, int inEnd) 
+{
+    static int preIndex = 0;
+    if (inStrt > inEnd)
+        return NULL;
+    struct node* tNode = (struct node*)malloc(sizeof(struct node));
+    tNode->data = (pre[preIndex++]);
+    tNode->left = NULL;
+    tNode->right = NULL;
+
+    if (inStrt == inEnd)
+        return tNode;
+    int inIndex = search(in, inStrt, 
+    inEnd, tNode->data);
+    tNode->left = buildTree(in, pre, 
+    inStrt, inIndex - 1);
+    tNode->right = buildTree(in, pre, 
+    inIndex + 1, inEnd);
+    return tNode;
+}
+int search(int arr[], int strt, int end, int value) 
+{
+    int i;
+    for (i = strt; i &lt;= end; i++) {
+        if (arr[i] == value)
+            return i;
+    }
+}
+void printInorder(struct node* node) {
+    if (node == NULL)
+        return;
+    printInorder(node->left);
+    printf("%d\t ", node->data);
+    printInorder(node->right);
+}      
+int maxDepth(struct node* root) {
+    if (root == NULL) {
+        return 0;
+    } else {
+        int leftDepth = maxDepth(root->left);
+        int rightDepth = maxDepth(root->right);
+        return 1 + (leftDepth > rightDepth ?
+        leftDepth : rightDepth);
+    }
+}
+int main() {
+    int i, size;
+    printf("Enter size: ");
+    scanf("%d", &size);
+    int in[size], pre[size];
+    printf("Enter elements of preorder 
+    array:\n");
+    for (i = 0; i &lt; size; i++) {
+        scanf("%d", &pre[i]);
+    }
+    printf("Enter elements of inorder 
+    array:\n");
+    for (i = 0; i &lt; size; i++) {
+        scanf("%d", &in[i]);
+    }
+    struct node* root = buildTree(in, pre, 
+    0, size - 1);
+    printf("Inorder traversal of the 
+    constructed tree:\n");
+    printInorder(root);
+    int treeDepth = maxDepth(root);
+    printf("\nMaximum depth of the tree is: 
+    %d\n", treeDepth);
+}  
+<h1>Output</h1>
+Enter size: 8
+Enter elements of preorder array:
+1 2 4 5 3 6 7 8
+Enter elements of inorder array:
+4 2 5 1 6 3 7 8
+Inorder traversal of the constructed tree:
+4 2 5 1 6 3 7 8	 
+Maximum depth of the tree is: 4
+</pre>
+
+    </body>
+</html>

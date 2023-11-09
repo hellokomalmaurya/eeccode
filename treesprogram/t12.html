@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>index</title>
+        <link rel="stylesheet" href="C:\Users\HP\Desktop\website\database-website\iframecss.css">
+    </head>
+    <body>
+       <h1>Code</h1>
+<pre>
+#include&lt;stdio.h>
+#include&lt;stdlib.h>
+#define MAX_SIZE 100
+#define leftChildIndex(i) ((2 * i) + 1)
+#define rightChildIndex(i) ((2 * i) + 2)
+
+int tree[MAX_SIZE];
+int kthLargest = -1;
+int kthSmallest = -1;
+
+void insert(int data, int index) {
+    if (tree[index] == 0) {
+        tree[index] = data;
+    } else if (data &lt; tree[index]) {
+ insert(data, leftChildIndex(index));
+    } else {
+ insert(data, rightChildIndex(index));
+    }
+}
+
+int findMinIndex(int index) {
+ while (tree[leftChildIndex(index)] != 0) {
+ index = leftChildIndex(index);
+    }
+    return index;
+}
+
+void deleteNode(int data, int index) {
+ if (index >= MAX_SIZE || tree[index] == 0) {
+        return;
+    }
+
+ if (data < tree[index]) {
+  int leftChild = leftChildIndex(index);
+        deleteNode(data, leftChild);
+    } else if (data > tree[index]) {
+  int rightChild = rightChildIndex(index);
+        deleteNode(data, rightChild);
+    } else {
+  if (tree[leftChildIndex(index)] == 0) {
+  tree[index] = tree[rightChildIndex(index)];
+  tree[rightChildIndex(index)] = 0;
+    } 
+  else if (tree[rightChildIndex(index)] == 0) {
+   tree[index] = tree[leftChildIndex(index)];
+   tree[leftChildIndex(index)] = 0;
+   } 
+  else {
+  int minIndex = findMinIndex
+  (rightChildIndex(index));
+  tree[index] = tree[minIndex];
+         deleteNode(data, minIndex);
+        }
+  printf("The deleted value is: %d\n", data);
+    }
+}
+
+void inorder(int index) {
+    if (index >= MAX_SIZE || tree[index] == 0) {
+        return;
+    }
+
+    inorder(leftChildIndex(index));
+    printf(" %d ", tree[index]);
+    inorder(rightChildIndex(index));
+}
+void preorder(int index) {
+    if (index >= MAX_SIZE || tree[index] == 0) {
+        return;
+    }
+    printf(" %d ", tree[index]);
+    preorder(leftChildIndex(index));
+    preorder(rightChildIndex(index));
+}
+void postorder(int index) {
+    if (index >= MAX_SIZE || tree[index] == 0) {
+        return;
+    }
+
+    postorder(leftChildIndex(index));
+    postorder(rightChildIndex(index));
+    printf(" %d ", tree[index]);
+}
+
+void findKthLargest(int k, int index) {
+  if (index >= MAX_SIZE || tree[index] == 0 
+  || k <= 0) {
+        return;
+    }
+    findKthLargest(k, leftChildIndex(index));
+    if (--k == 0) {
+        kthLargest = tree[index];
+        return;
+    }
+
+    findKthLargest(k, rightChildIndex(index));
+}
+
+int search(int data, int index) {
+ if (index >= MAX_SIZE || tree[index] == 0) {
+        return 0;
+    }
+
+    if (data == tree[index]) {
+        return 1;
+    } else if (data &lt; tree[index]) {
+ return search(data, leftChildIndex(index));
+    } else {
+ return search(data, rightChildIndex(index));
+    }
+}
+
+int main() {
+    int op, value;
+    int rootIndex = 0;
+while (1) {
+printf("\nPress 1.Insert, 2.Delete, 3.Search, 
+4.InOrder printing,5.PreOrder printing, 
+6.PostOrder printing, 7.Kth Smallest,8.Exit : ");
+        scanf("%d", &op);
+        switch (op) {
+  case 1:
+  printf("Enter the value of the node you 
+  want to insert: ");
+  scanf("%d", &value);
+  insert(value, rootIndex);
+      break;
+  case 2:
+  printf("Enter the value to be deleted: ");
+  scanf("%d", &value);
+  deleteNode(value, rootIndex);
+      break;
+  case 3:
+  printf("Enter the value to be found: ");
+  scanf("%d", &value);
+  if (search(value, rootIndex)) {
+  printf("Value found\n");
+  } else {
+  printf("Value not found\n");
+  }
+      break;
+  case 4:
+  printf("Inorder printing: ");
+  inorder(rootIndex);
+  printf("\n");
+      break;
+  case 5:
+  printf("Preorder printing: ");
+  preorder(rootIndex);
+  printf("\n");
+      break;
+  case 6:
+  printf("Postorder printing: ");
+  postorder(rootIndex);
+  printf("\n");
+      break;
+  case 7:
+  printf("Enter the value of k for the kth 
+  largest element: ");
+  scanf("%d", &value);
+  kthLargest = -1; // Reset kthLargest
+  findKthLargest(value, rootIndex);
+  if (kthLargest != -1) {
+  printf("The %dth largest element is: %d\n", 
+  value, kthLargest);
+  } else {
+  printf("Invalid k value or k is out of 
+  range.\n");
+  }
+      break;
+  case 8:
+  printf("Enter the value of k for the 
+  kth smallest element: ");
+  scanf("%d", &value);
+  kthSmallest = -1; // Reset kthSmallest
+  findKthSmallest(value, rootIndex);
+  if (kthSmallest != -1) {
+  printf("The %dth smallest element is: 
+  %d\n", value, kthSmallest);
+  } else {
+  printf("Invalid k value or k is out 
+  of range.\n");
+                }
+      break;
+  case 9:
+  printf("Exited!\n");
+     exit(0);
+       break;
+   default:
+   printf("Invalid option!\n");
+        }
+    }
+    return 0;
+}  
+<h1>Output</h1>
+Press 1.Insert, 2.Delete, 3.Search, 
+4.InOrder printing,5.PreOrder printing, 
+6.PostOrder printing,7.Kth Largest, 
+8.Kth Smallest,9.Exit : 1
+Enter the value of the node you want 
+to insert: 100
+Press 1.Insert, 2.Delete, 3.Search, 
+4.InOrder printing,5.PreOrder printing, 
+6.PostOrder printing,7.Kth Largest, 
+8.Kth Smallest,9.Exit : 1
+Enter the value of the node you want 
+to insert: 90
+Press 1.Insert, 2.Delete, 3.Search, 
+4.InOrder printing,5.PreOrder printing, 
+6.PostOrder printing,7.Kth Largest, 
+8.Kth Smallest,9.Exit : 1
+Enter the value of the node you want 
+to insert: 80
+Press 1.Insert, 2.Delete, 3.Search, 
+4.InOrder printing,5.PreOrder printing, 
+6.PostOrder printing,7.Kth Largest, 
+8.Kth Smallest,9.Exit : 1
+Enter the value of the node you want 
+to insert: 70
+Press 1.Insert, 2.Delete, 3.Search, 
+4.InOrder printing,5.PreOrder printing, 
+6.PostOrder printing,7.Kth Largest, 
+8.Kth Smallest,9.Exit : 1
+Enter the value of the node you want 
+to insert: 85
+Press 1.Insert, 2.Delete, 3.Search, 
+4.InOrder printing,5.PreOrder printing, 
+6.PostOrder printing,7.Kth Largest, 
+8.Kth Smallest,9.Exit : 1
+Enter the value of the node you want 
+to insert: 95
+Press 1.Insert, 2.Delete, 3.Search, 
+4.InOrder printing,5.PreOrder printing, 
+6.PostOrder printing,7.Kth Largest, 
+8.Kth Smallest,9.Exit : 1
+Enter the value of the node you want 
+to insert: 98
+Press 1.Insert, 2.Delete, 3.Search, 
+4.InOrder printing,5.PreOrder printing, 
+6.PostOrder printing,7.Kth Largest, 
+8.Kth Smallest,9.Exit : 1
+Enter the value of the node you want 
+to insert: 96
+Press 1.Insert, 2.Delete, 3.Search, 
+4.InOrder printing,5.PreOrder printing, 
+6.PostOrder printing,7.Kth Largest, 
+8.Kth Smallest,9.Exit : 1
+1Enter the value of the node you want 
+to insert: 10
+Press 1.Insert, 2.Delete, 3.Search, 
+4.InOrder printing,5.PreOrder printing, 
+6.PostOrder printing,7.Kth Largest, 
+8.Kth Smallest,9.Exit : 1
+Enter the value of the node you want 
+to insert: 110
+Press 1.Insert, 2.Delete, 3.Search, 
+4.InOrder printing,5.PreOrder printing, 
+6.PostOrder printing,7.Kth Largest, 
+8.Kth Smallest,9.Exit : 1
+Enter the value of the node you want 
+to insert: 105
+Press 1.Insert, 2.Delete, 3.Search, 
+4.InOrder printing,5.PreOrder printing, 
+6.PostOrder printing,7.Kth Largest, 
+8.Kth Smallest,9.Exit : 1
+Enter the value of the node you want 
+to insert: 108
+Press 1.Insert, 2.Delete, 3.Search, 
+4.InOrder printing,5.PreOrder printing, 
+6.PostOrder printing,7.Kth Largest, 
+8.Kth Smallest,9.Exit : 1
+Enter the value of the node you want 
+to insert: 120
+Press 1.Insert, 2.Delete, 3.Search, 
+4.InOrder printing,5.PreOrder printing, 
+6.PostOrder printing,7.Kth Largest, 
+8.Kth Smallest,9.Exit : 1
+Enter the value of the node you want 
+to insert: 130
+Press 1.Insert, 2.Delete, 3.Search, 
+4.InOrder printing,5.PreOrder printing, 
+6.PostOrder printing,7.Kth Largest, 
+8.Kth Smallest,9.Exit : 5
+Preorder printing:  
+100  90  80  70  10  85  95  
+98  96  110  105  108  120  130 
+
+Press 1.Insert, 2.Delete, 3.Search, 
+4.InOrder printing,5.PreOrder printing, 
+6.PostOrder printing,7.Kth Largest, 
+8.Kth Smallest,9.Exit : 7
+Enter the value of k for the kth 
+largest element: 3
+The 3th largest element is: 120
+
+Press 1.Insert, 2.Delete, 3.Search, 
+4.InOrder printing,5.PreOrder printing, 
+6.PostOrder printing,7.Kth Largest, 
+8.Kth Smallest,9.Exit : 7
+Enter the value of k for the kth 
+largest element: 4
+The 4th largest element is: 130
+
+Press 1.Insert, 2.Delete, 3.Search, 
+4.InOrder printing,5.PreOrder printing, 
+6.PostOrder printing,7.Kth Largest, 
+8.Kth Smallest,9.Exit : 8
+Enter the value of k for the kth 
+smallest element: 4
+The 4th smallest element is: 70
+
+Press 1.Insert, 2.Delete, 3.Search, 
+4.InOrder printing,5.PreOrder printing, 
+6.PostOrder printing,7.Kth Largest, 
+8.Kth Smallest,9.Exit : 8
+Enter the value of k for the kth 
+smallest element: 2
+The 2th smallest element is: 90
+
+Press 1.Insert, 2.Delete, 3.Search, 
+4.InOrder printing,5.PreOrder printing, 
+6.PostOrder printing,7.Kth Largest, 
+8.Kth Smallest,9.Exit : 9
+Exited!
+</pre>
+
+    </body>
+</html>

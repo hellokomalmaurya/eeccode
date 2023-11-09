@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>index</title>
+        <link rel="stylesheet" href="C:\Users\HP\Desktop\website\database-website\iframecss.css">
+    </head>
+    <body>
+       <h1>Code</h1>
+<pre>//Enter the string from the user and convert into a float value?
+#include&lt;stdio.h>
+#include&lt;conio.h>
+#include&lt;math.h>
+int convert(char str[],int I,int n){
+int num=0,i;
+for(i=I;i&lt;=n;i++){
+num=(num*10)+(str[i]-48);
+}
+return num;
+}
+void main(){
+char str[30];
+int size,i,j,front=0;
+float p,s,q;
+clrscr();
+printf("Enter a string: ");
+gets(str);
+size=strlen(str);
+for(i=0;i&lt;size;i++){
+if(str[i]=='.'){
+s=convert(str,0,i-1);
+for(j=i+1;j&lt;size-1;j++){
+front++;
+}
+p=convert(str,i+1,size-2);
+p=p/pow(10,front);
+}
+}
+q=s+p;
+printf("Float no. is: %f\n",q);
+getch();
+} 
+<h1>Output</h1>
+Enter a string: 123.90
+Float no. is: 123.900002
+</pre>
+
+    </body>
+</html>

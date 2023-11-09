@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>index</title>
+        <link rel="stylesheet" href="C:\Users\HP\Desktop\website\database-website\iframecss.css">
+    </head>
+    <body>
+       <h1>Code</h1>
+<pre>//Enter a string from the user, enter a character and perform binary search algorithm through iteration.
+#include&lt;stdio.h>
+#include&lt;conio.h>
+int binarysearch(char str[],int left,int right,char element){
+int mid;
+while(left&lt;=right){
+mid=(left+right)/2;
+if(str[mid]==element){
+return mid;
+}
+if(str[mid]&lt;element){
+left=mid+1;
+}
+if(str[mid]>element){
+right=mid-1;
+}
+}
+return -1;
+}
+void main(){
+char str[30],element;
+int i,j,temp,left,result,right;
+clrscr();
+printf("Enter a string: ");
+gets(str);
+for(i=0;str[i]!='\0';i++){
+for(j=i+1;str[j]!='\0';j++){
+if(str[i]>str[j]){
+temp=str[i];
+str[i]=str[j];
+str[j]=temp;
+}
+}
+}
+printf("Enter element to search: ");
+scanf("%c",&element);
+result=binarysearch(str,0,i-1,element);
+if(result!=-1){
+printf("Character %c found on index %d.",element,result);
+}
+else{
+printf("Character %c not fount!",element);
+}
+getch();
+} 
+<h1>Output</h1>
+Enter a string: hello world
+Enter element to search: r
+Character r found on index 9.
+</pre>
+
+    </body>
+</html>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>index</title>
+        <link rel="stylesheet" href="C:\Users\HP\Desktop\website\database-website\iframecss.css">
+    </head>
+    <body>
+       <h1>Code</h1>
+<pre>
+#include&lt;stdio.h>
+#include&lt;stdlib.h>
+#include&lt;time.h>
+
+void swap(int *x, int *y) {
+    int temp = *x;
+    *x = *y;
+    *y = temp;
+}
+
+void bubbleSortRecursive(int arr[], int n) {
+    if (n &lt;= 1) {
+        return;
+    }
+
+    int swapped = 0;
+    for (int i = 0; i &lt; n - 1; i++) {
+        if (arr[i] > arr[i + 1]) {
+            swap(&arr[i], &arr[i + 1]);
+            swapped = 1;
+        }
+    }
+
+    if (swapped) {
+        bubbleSortRecursive(arr, n - 1);
+    }
+}
+
+int main() {
+    int n;
+    printf("Enter the number of elements in the array: ");
+    scanf("%d", &n);
+    
+    int arr[n];
+    
+    printf("Enter %d integers:\n", n);
+    for (int i = 0; i &lt; n; i++) {
+        scanf("%d", &arr[i]);
+    }
+
+    clock_t start_time = clock();
+    bubbleSortRecursive(arr, n);
+    clock_t end_time = clock();
+    
+    double time_taken = ((double)(end_time - start_time)) / CLOCKS_PER_SEC;
+    
+    printf("Sorted array: ");
+    for (int i = 0; i &lt; n; i++) {
+        printf("%d ", arr[i]);
+    }
+    printf("\n");
+    
+    printf("Time taken: %f seconds\n", time_taken);
+    
+    // Worst-case time complexity: O(n^2)
+    // Best-case time complexity: O(n) if the array is already sorted
+    
+    return 0;
+}
+<h1>Output</h1>
+Enter the number of elements in the array: 5
+Enter 5 integers:
+56
+3
+43
+45
+3
+Sorted array: 3 3 43 45 56 
+Time taken: 0.000002 seconds 
+</pre>
+
+    </body>
+</html>

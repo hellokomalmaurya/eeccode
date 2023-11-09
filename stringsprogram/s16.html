@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>index</title>
+        <link rel="stylesheet" href="C:\Users\HP\Desktop\website\database-website\iframecss.css">
+    </head>
+    <body>
+       <h1>Code</h1>
+<pre>//Enter the string from the user,also enter a character and print the index of the character if it id exist in the string else print -1.
+#include&lt;stdio.h>
+#include&lt;conio.h>
+void main(){
+char str[30],search;
+int i;
+clrscr();
+printf("Enter a string: ");
+gets(str);
+printf("Enter a character to search: ");
+scanf("%c",&search);
+for(i=0;str[i]!='\0';i++){
+if(str[i]==search){
+printf("Value found on index %d!",i);
+break;
+}
+}
+if(str[i]=='\0'){
+printf("%d",-1);
+}
+getch();
+}
+<h1>Output</h1>
+Enter a string: Hello World!
+Enter a character to search: u
+-1
+</pre>
+
+    </body>
+</html>

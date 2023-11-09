@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>index</title>
+        <link rel="stylesheet" href="C:\Users\HP\Desktop\website\database-website\iframecss.css">
+    </head>
+    <body>
+       <h1>Code</h1>
+<pre>
+#include&lt;stdio.h>
+#include&lt;stdlib.h>
+int isFull(int stack[],int size,int item,int top){
+    return top;
+}
+int isEmpty(int stack[],int size,int item,int top){
+    return top;
+}
+int push(int stack[],int size,int item,int top){
+    top++;
+    stack[top]=item;
+    return top;
+   }
+
+int pop(int stack[],int size,int item,int top){
+    return top;
+    }
+
+int display(int stack[],int size,int item,int top){
+    return top;
+}
+
+int peek(int stack[],int size,int item,int top){
+     return top;
+}
+
+void main(){
+    int top=-1;
+    int size,i;
+    printf("Enter size : ");
+    scanf("%d",&size);
+    int item,stack[size],op;
+    while(1){
+    printf("Enter your choice ; 1 for push(),
+    2 for pop(),3 for display,4 for peek(),
+    5 for isFull(),6 for IsEmpty,
+    7 for Exit :\n");
+    scanf("%d",&op);
+    switch (op)
+    {
+ case 1:if(top==size-1){
+         printf("Stack is full\n");}
+         else{
+         printf("Enter value : ");
+         scanf("%d",&item);
+         top = push(stack,size,item,top);
+         printf("The inserted value is : %d\n",
+         stack[top]);
+         }
+         break;
+ case 2:top = pop(stack,size,item,top);
+        if(top==-1){
+        printf("Stack is Empty\n");}
+        else{
+        printf("The deleted value is : %d\n",
+        stack[top]);
+        top--;
+        }        
+        break;
+ case 3:if(top==-1){
+        printf("Stack is Empty\n");}
+        else{
+        top=display(stack,size,item,top);
+        printf("The values in stack are : ");
+        for(i=0;i&lt;=top;i++){
+        printf("%d",stack[i]);
+        }
+        printf("\n");
+        }        
+        break;
+ case 4:if(top==-1){
+        printf("Stack is Empty\n");}
+        else{
+        top=peek(stack,size,item,top);
+        printf("The front value is : %d\n",
+        stack[top]);
+        }
+        break;
+ case 5:if(top==size-1){
+        printf("Stack is full\n");}
+        else{
+        printf("Stack is not full\n");
+        }
+        break;
+ case 6:if(top==-1){
+        printf("Stack is Empty.\n");}
+        else{
+        printf("Stack is not Empty.\n");
+        }
+        break;
+ case 7:printf("Exited!\n");
+        exit(0);
+        break;
+ default:
+        printf("Invalid choice!\n");
+    }}}
+<h1>Output</h1>
+Enter size : 5
+Enter your choice ; 1 for push(),2 for 
+pop(),3 for display,4 for peek(),5 for 
+isFull(),6 for IsEmpty,7 for Exit :
+6
+Stack is Empty.
+Enter your choice ; 1 for push(),2 for 
+pop(),3 for display,4 for peek(),5 for 
+isFull(),6 for IsEmpty,7 for Exit :
+5
+Stack is not full
+Enter your choice ; 1 for push(),2 for 
+pop(),3 for display,4 for peek(),5 for
+isFull(),6 for IsEmpty,7 for Exit :
+4
+Stack is Empty
+Enter your choice ; 1 for push(),2 for 
+pop(),3 for display,4 for peek(),5 for 
+isFull(),6 for IsEmpty,7 for Exit :
+1
+Enter value : 3
+The inserted value is : 3
+Enter your choice ; 1 for push(),2 
+for pop(),3 for display,4 for peek(),5 
+for isFull(),6 for IsEmpty,7 for Exit :
+1
+Enter value : 5
+The inserted value is : 5
+Enter your choice ; 1 for push(),2 
+for pop(),3 for display,4 for peek(),5 
+for isFull(),6 for IsEmpty,7 for Exit :
+1
+Enter value : 7
+The inserted value is : 7
+Enter your choice ; 1 for push(),2 
+for pop(),3 for display,4 for peek(),5 
+for isFull(),6 for IsEmpty,7 for Exit :
+2
+The deleted value is : 7
+Enter your choice ; 1 for push(),2 
+for pop(),3 for display,4 for peek(),5
+for isFull(),6 for IsEmpty,7 for Exit :
+3
+The values in stack are : 35
+Enter your choice ; 1 for push(),2 
+for pop(),3 for display,4 for peek(),5 
+for isFull(),6 for IsEmpty,7 for Exit :
+4
+The front value is : 5
+Enter your choice ; 1 for push(),2 
+for pop(),3 for display,4 for peek(),5 
+for isFull(),6 for IsEmpty,7 for Exit :
+5
+Stack is not full
+Enter your choice ; 1 for push(),2 
+for pop(),3 for display,4 for peek(),5 
+for isFull(),6 for IsEmpty,7 for Exit :
+6
+Stack is not Empty.
+Enter your choice ; 1 for push(),2 for 
+pop(),3 for display,4 for peek(),5 for 
+isFull(),6 for IsEmpty,7 for Exit :
+7
+Exited!
+</pre>
+
+    </body>
+</html>

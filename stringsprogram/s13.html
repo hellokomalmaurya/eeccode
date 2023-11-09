@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>index</title>
+        <link rel="stylesheet" href="C:\Users\HP\Desktop\website\database-website\iframecss.css">
+    </head>
+    <body>
+       <h1>Code</h1>
+<pre>//Enter the string from the user and copy reverse of the string into another string?
+#include&lt;stdio.h>
+#include&lt;conio.h>
+void main(){
+char str[30],s1[30];
+int i,size=0;
+clrscr();
+printf("Enter a string: ");
+gets(str);
+while(str[size]!='\0'){
+size++;
+}
+i=0;
+while(size-1>=0){
+//printf("%d",i);
+s1[i]=str[size-1];
+//printf("%s",s1);
+size--;
+i++;
+}
+s1[i]='\0';
+printf("%s",s1);
+getch();
+} 
+<h1>Output</h1>
+Enter a string: Have a nice day!
+!yad ecin a evaH
+</pre>
+
+    </body>
+</html>

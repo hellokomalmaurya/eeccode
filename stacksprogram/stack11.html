@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>index</title>
+        <link rel="stylesheet" href="C:\Users\HP\Desktop\website\database-website\iframecss.css">
+    </head>
+    <body>
+       <h1>Code</h1>
+<pre>
+#include&lt;stdio.h>
+#include&lt;conio.h>
+#include&lt;string.h>
+
+int s[50];
+int top=0;
+
+void push(int ch);
+int pop();
+
+int main()
+{
+	int a,b,c,i;
+	char prefix[50];
+	printf("Enter the prefix : ");
+	gets(prefix);
+	for(i=strlen(prefix)-1;i>=0;i--)
+	{
+		if(prefix[i]=='+')
+		{
+			a=pop();
+                        b=pop();
+                        c=b+a;
+			push(c);
+		}
+		else if(prefix[i]=='-')
+		{
+			a=pop();
+			b=pop();
+			c=b-a;
+			push(c);
+		}
+		else if(prefix[i]=='*')
+		{	a=pop();
+		        b=pop();
+		        c=b*a;
+		push(c);
+		}
+		else if(prefix[i]=='/')
+		{
+			a=pop();
+			b=pop();
+			c=b/a;
+			push(c);
+		}
+		else
+		{
+			push(prefix[i]-48);
+		}
+	}
+	printf("Answer : %d",pop());
+
+	getch();
+	return 0;
+}
+
+void push(int ch)
+{
+	top++;
+	s[top]=ch;
+}
+
+int pop()
+{
+	int ch;
+	ch=s[top];
+	top=top-1;
+	return(ch);
+}  
+<h1>Output</h1>
+Enter the prefix : *+265
+Answer : 40 
+</pre>
+
+    </body>
+</html>

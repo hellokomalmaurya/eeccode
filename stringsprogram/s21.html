@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>index</title>
+        <link rel="stylesheet" href="C:\Users\HP\Desktop\website\database-website\iframecss.css">
+    </head>
+    <body>
+       <h1>Code</h1>
+<pre>//Print all the permutation of a string i.e. "ABCDE".
+#include&lt;stdio.h>
+#include&lt;conio.h>
+void swap(char *c1,char *c2){
+char temp;
+temp=*c1;
+*c1=*c2;
+*c2=temp;
+}
+void perm(char *s,int a,int n){
+int j;
+if(a==n){
+printf("%s\n",s);
+}
+else{
+for(j=a;j&lt;=n;j++){
+swap((s+a),(s+j));
+perm(s,a+1,n);
+swap((s+a),(s+j));
+}
+}
+}
+
+void main(){
+char str[30];
+int n=0;
+clrscr();
+printf("Enter a string: ");
+gets(str);
+printf("All posible permutations:\n");
+while(str[n]!='\0'){
+n++;
+}
+perm(str,0,n-1);
+getch();
+}
+<h1>Output</h1>
+Enter a string: ABCD
+All posible permutations:
+ABCD
+ABDC
+ACBD
+ACDB
+ADCB
+ADBC
+BACD
+BADC
+BCAD
+BCDA
+BDCA
+BDAC
+CBAD
+CBDA
+CABD
+CADB
+CDAB
+CDBA
+DBCA
+DBAC
+DCBA
+DCAB
+DACB
+DABC
+</pre>
+
+    </body>
+</html>

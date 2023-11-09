@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>index</title>
+        <link rel="stylesheet" href="C:\Users\HP\Desktop\website\database-website\iframecss.css">
+    </head>
+    <body>
+       <h1>Code</h1>
+<pre>//Enter a integer array from the user, Enter an integer value and perform binary search algorithm through iteration.
+#include&lt;stdio.h>
+#include&lt;conio.h>
+int binarySearch(int arr[],int size,int search){
+int left=0,right=size-1,mid;
+while(left&lt;=right){
+mid=left+(right-left)/2;
+if(arr[mid]==search){
+return mid;
+}
+else if(arr[mid]&lt;search){
+left=mid+1;
+}
+else{
+right=mid-1;
+}
+}
+return -1;
+}
+void main(){
+int arr[5],temp,search,j,i,result;
+clrscr();
+for(i=0;i&lt;5;i++){
+printf("Enter array elements: ");
+scanf("%d",&arr[i]);
+}
+for(i=0;i&lt;5;i++){
+for(j=i+1;j&lt;5;j++){
+if(arr[i]>arr[j]){
+temp=arr[i];
+arr[i]=arr[j];
+arr[j]=temp;
+}
+}
+}
+printf("Sorted array: ");
+for(i=0;i&lt;5;i++){
+printf("%d  ",arr[i]);
+}
+printf("Enter an integer to search: ");
+scanf("%d",&search);
+result=binarySearch(arr,i,search);
+if(result!=-1){
+printf("Integer %d found on index %d.",search,result);
+}
+getch();
+} 
+<h1>Output</h1>
+Enter array elements: 56
+Enter array elements: 98
+Enter array elements: 2
+Enter array elements: 6
+Enter array elements: 0
+Enter an integer to search: 0
+Integer 0 found on index 0. 
+</pre>
+
+    </body>
+</html>

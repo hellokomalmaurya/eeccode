@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>index</title>
+        <link rel="stylesheet" href="C:\Users\HP\Desktop\website\database-website\iframecss.css">
+    </head>
+    <body>
+       <h1>Code</h1>
+<pre>//Enter the string from the user and check its palindrome or not?
+#include&lt;stdio.h>
+#include&lt;conio.h>
+void main(){
+char st1[30];
+int i,size=0,result;
+clrscr();
+printf("Enter a string: ");
+gets(st1);
+while(st1[size]!='\0'){
+size++;
+}
+for(i=0;i&lt;size;i++){
+if(st1[i]!=st1[size-i-1]){
+result=0;
+break;
+}
+else{
+result=1;
+}
+}
+if(result==1){
+printf("It is palindrome!");
+}
+else{
+printf("its not a palindrome!");
+}
+getch();
+} 
+<h1>Output</h1>
+Enter a string: madam
+It is palindrome!
+</pre>
+
+    </body>
+</html>

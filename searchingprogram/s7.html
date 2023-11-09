@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>index</title>
+        <link rel="stylesheet" href="C:\Users\HP\Desktop\website\database-website\iframecss.css">
+    </head>
+    <body>
+       <h1>Code</h1>
+<pre>//Enter a integer array from the user, enter an integer value and perform binary search algorithm through recursion.
+#include&lt;stdio.h>
+#include&lt;conio.h>
+binarysearch(int arr[],int left,int right,int element){
+int mid;
+if(left&lt;=left){
+mid=(left+right)/2;
+if(arr[mid]==element){
+return mid;
+}
+if(arr[mid]&lt;element){
+return binarysearch(arr,mid+1,right,element);
+}
+if(arr[mid]>element){
+return binarysearch(arr,left,mid-1,element);
+}
+}
+return -1;
+}
+void main(){
+int arr[5];
+int i,j,temp,result,element;
+clrscr();
+for(i=0;i&lt;5;i++){
+printf("Enter element on index %d: ",i);
+scanf("%d",&arr[i]);
+}
+for(i=0;i&lt;5;i++){
+for(j=i+1;j&lt;5;j++){
+if(arr[i]>arr[j]){
+temp=arr[i];
+arr[i]=arr[j];
+arr[j]=temp;
+}
+}
+}
+printf("Enter element to search: ");
+scanf("%d",&element);
+result=binarysearch(arr,0,5-1,element);
+if(result!=-1){
+printf("Element %d found on index %d.",element,result);
+}
+else{
+printf("Element not found!");
+}
+getch();
+}
+<h1>Output</h1>
+Enter element on index 0: 45
+Enter element on index 1: 32
+Enter element on index 2: 78
+Enter element on index 3: 5
+Enter element on index 4: 46
+Enter element to search: 46
+Element 46 found on index 3. 
+</pre>
+
+    </body>
+</html>

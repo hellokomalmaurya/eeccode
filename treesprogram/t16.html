@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>index</title>
+        <link rel="stylesheet" href="C:\Users\HP\Desktop\website\database-website\iframecss.css">
+    </head>
+    <body>
+       <h1>Code</h1>
+<pre>
+#include&lt;stdio.h>
+#include&lt;stdlib.h>
+    
+    // Structure for a BST node
+    struct Node {
+        int data;
+        struct Node* left;
+        struct Node* right;
+    };
+    
+    // Function to create a new BST node
+    struct Node* newNode(int data) {
+        struct Node* node = (struct Node*)malloc(sizeof(struct Node));
+        node->data = data;
+        node->left = node->right = NULL;
+        return node;
+    }
+    
+    // Utility function to construct BST from postorder traversal
+    struct Node* constructBST(int postorder[], int size) {
+        struct Node* root = newNode(postorder[size - 1]);
+        struct Node* stack[size];
+        int top = -1;
+    
+        // Push the root to the stack
+        stack[++top] = root;
+    
+        // Traverse the given array in reverse order
+        for (int i = size - 2; i >= 0; --i) {
+            struct Node* temp = NULL;
+    
+            // Keep popping from stack while the next element is greater than the current element
+            while (top >= 0 && postorder[i] > stack[top]->data) {
+                temp = stack[top--];
+            }
+    
+            // Make the current node the left child of the last popped node
+            if (temp != NULL) {
+                temp->left = newNode(postorder[i]);
+                stack[++top] = temp->left;
+            }
+    
+            // If the current element is smaller, make it the right child of the current node
+            else {
+                temp = stack[top];
+                temp->right = newNode(postorder[i]);
+                stack[++top] = temp->right;
+            }
+        }
+    
+        return root;
+    }
+    
+    // Function to perform inorder traversal and print the elements
+    void inorderTraversal(struct Node* root) {
+        if (root != NULL) {
+            inorderTraversal(root->left);
+            printf("%d ", root->data);
+            inorderTraversal(root->right);
+        }
+    }
+    
+    // Driver program
+    int main() {
+        int postorder[] = {3, 7, 5, 20, 10};
+        int size = sizeof(postorder) / sizeof(postorder[0]);
+    
+        // Construct BST from postorder traversal
+        struct Node* root = constructBST(postorder, size);
+    
+        // Print inorder traversal of the constructed BST
+        printf("Inorder traversal of the constructed BST: ");
+        inorderTraversal(root);
+    
+        return 0;
+    }
+<h1>Output</h1>
+Inorder traversal of the constructed BST: 20 7 3 5 10 
+</pre>
+
+    </body>
+</html>

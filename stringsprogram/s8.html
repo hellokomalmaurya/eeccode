@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>index</title>
+        <link rel="stylesheet" href="C:\Users\HP\Desktop\website\database-website\iframecss.css">
+    </head>
+    <body>
+       <h1>Code</h1>
+<pre>//Enter two strings from the user and conatenate those strings in another
+// string and display the answer?
+#include&lt;sdio.h>
+#include&lt;conio.h>
+void main(){
+char str1[60];
+char str2[30];
+int i,size=0;
+clrscr();
+printf("Enter 1st string: ");
+gets(str1);
+printf("Enter 2nd string:");
+gets(str2);
+while(str1[size]!='\0'){
+size++;
+}
+i=0;
+while(str2[i]!='\0'){
+str1[size+i]=str2[i];
+i++;
+}
+str1[size+i]='\0';
+printf("%s",str1);
+getch();
+}
+<h1>Output</h1>
+Enter 1st string: Get ready.
+Enter 2nd string:for what?
+Get ready.for what?
+</pre>
+
+    </body>
+</html>

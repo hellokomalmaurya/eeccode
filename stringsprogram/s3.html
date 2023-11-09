@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>index</title>
+        <link rel="stylesheet" href="C:\Users\HP\Desktop\website\database-website\iframecss.css">
+    </head>
+    <body>
+       <h1>Code</h1>
+<pre>//Enter a string from the user and convert into sentence case.
+#include&lt;stdio.h>
+#include&lt;conio.h>
+void main(){
+char str[30];
+int i;
+clrscr();
+printf("Enter a string: ");
+gets(str);
+if(str[0]>='a'&& str[0]&lt;='z'){
+str[0]=str[0]-32;
+}
+for(i=0;str[i]!='\0';i++){
+if(str[i-2]=='.'|| str[i-2]=='?'|| str[i-2]=='!'){
+if(str[i]>='a'&& str[i]&lt;='z'){
+str[i]=str[i]-32;
+}
+}
+}
+printf("%s",str);
+getch();
+}
+<h1>Output</h1>
+Enter a string: have a nice day!
+Have a nice day!
+</pre>
+
+    </body>
+</html>

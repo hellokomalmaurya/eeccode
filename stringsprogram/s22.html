@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>index</title>
+        <link rel="stylesheet" href="C:\Users\HP\Desktop\website\database-website\iframecss.css">
+    </head>
+    <body>
+       <h1>Code</h1>
+<pre>//Enter the string from the user, sort the string in ascending order and print it.
+#include&lt;stdio.h>
+#include&lt;conio.h>
+void main(){
+char str[30];
+int i,j,temp;
+clrscr();
+printf("Enter a string: ");
+gets(str);
+for(i=0;str[i]!='\0';i++){
+for(j=i+1;str[j]!='\0';j++){
+if(str[i]>str[j]){
+temp=str[i];
+str[i]=str[j];
+str[j]=temp;
+}
+}
+}
+printf("%s",str);
+getch();
+}
+<h1>Output</h1>
+Enter a string: make a wish
+aaehikmsw
+</pre>
+
+    </body>
+</html>

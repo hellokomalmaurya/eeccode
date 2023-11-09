@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>index</title>
+        <link rel="stylesheet" href="C:\Users\HP\Desktop\website\database-website\iframecss.css">
+    </head>
+    <body>
+       <h1>Code</h1>
+<pre>//Enter the string from the user and print the difference of ASCII value of each character?
+#include&lt;stdio.h>
+#include&lt;conio.h>
+void main(){
+char str[30];
+int i,diff;
+clrscr();
+printf("Enter a string: ");
+gets(str);
+for(i=0;str[i]!='\0';i++){
+if(str[i]!='\n'){
+diff=str[i+1]-str[i];
+printf("%c-%c=%d\n",str[i],str[i+1],diff);
+}
+}
+getch();
+}
+<h1>Output</h1>
+Enter a string: Have a nice Day!
+H-a=25
+a-v=21
+v-e=-17
+e- =-69
+ -a=65
+a- =-65
+ -n=78
+n-i=-5
+i-c=-6
+c-e=2
+e- =-69
+ -D=36
+D-a=29
+a-y=24
+y-!=-88
+!-
+</pre>
+
+    </body>
+</html>

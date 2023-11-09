@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>index</title>
+        <link rel="stylesheet" href="C:\Users\HP\Desktop\website\database-website\iframecss.css">
+    </head>
+    <body>
+       <h1>Code</h1>
+<pre>//Enter a integer array from the user,Enter an integer value and perform linear search algorithm through itertion.
+#include&lt;stdio.h>
+#include&lt;conio.h>
+void main(){
+int arr[5],search,index,found,i;
+clrscr();
+for(i=0;i&lt;5;i++){
+printf("Enter integer: ");
+scanf("%d",&arr[i]);
+}
+printf("Enter value to search: ");
+scanf("%d",&search);
+for(i=0;i&lt;5;i++){
+if(arr[i]==search){
+index=i;
+found=1;
+break;
+}
+}
+if(found){
+printf("Value %d found on index %d.",search,index);
+}
+else{
+printf("Value not found!");
+}
+getch();
+}
+<h1>Output</h1>
+Enter integer: 12
+Enter integer: 45
+Enter integer: 3
+Enter integer: 54
+Enter integer: 3
+Enter value to search: 45
+Value 45 found on index 1.
+</pre>
+
+    </body>
+</html>

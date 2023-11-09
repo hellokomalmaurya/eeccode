@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>index</title>
+        <link rel="stylesheet" href="C:\Users\HP\Desktop\website\database-website\iframecss.css">
+    </head>
+    <body>
+       <h1>Code</h1>
+<pre>
+#include < stdio.h >
+#include < stdlib.h >
+
+// Structure for a binary search tree node
+struct TreeNode {
+    int data;
+    struct TreeNode* left;
+    struct TreeNode* right;
+};
+
+int main() {
+    struct TreeNode* root = NULL;
+    int data, count = 0;
+
+printf("Enter elements for the binary search tree 
+(enter -1 to exit):\n");
+    while (1) {
+        scanf("%d", &data);
+        if (data == -1) {
+            break;
+        }
+struct TreeNode* newNode = (struct TreeNode*)
+malloc(sizeof(struct TreeNode));
+        newNode->data = data;
+        newNode->left = NULL;
+        newNode->right = NULL;
+
+        if (root == NULL) {
+            root = newNode;
+        } else {
+   struct TreeNode* current = root;
+   struct TreeNode* parent;
+   while (current != NULL) {
+   parent = current;
+
+   if (data < current->data) {
+   current = current->left;
+   } else {
+   current = current->right;
+                }
+            }
+
+   if (data < parent->data) {
+   parent->left = newNode;
+   } else {
+   parent->right = newNode;
+            }
+        }
+
+        count++;
+    }
+
+  printf("Number of nodes inserted in the BST: 
+  %d\n", count);
+    return 0;
+}  
+<h1>Output</h1>
+Enter elements for the binary search 
+tree (enter -1 to exit):
+8
+5
+1
+7
+10
+9
+12
+-1
+Number of nodes inserted in the BST: 7
+</pre>
+
+    </body>
+</html>

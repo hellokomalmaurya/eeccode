@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>index</title>
+        <link rel="stylesheet" href="C:\Users\HP\Desktop\website\database-website\iframecss.css">
+    </head>
+    <body>
+       <h1>Code</h1>
+<pre>
+#include&lt;stdio.h>
+#include&lt;stdlib.h>
+
+// Structure for a binary tree node
+struct TreeNode {
+    int data;
+    struct TreeNode* left;
+    struct TreeNode* right;
+};
+
+//Function to build a strictly binary tree 
+from user input
+struct TreeNode* buildStrictBinaryTree() {
+    int data;
+    printf("Enter the data for the node 
+    (enter -1 to exit): ");
+    scanf("%d", &data);
+
+    if (data == -1) {
+        return NULL;
+    }
+
+    struct TreeNode* root = (struct TreeNode*)
+    malloc(sizeof(struct TreeNode));
+    root->data = data;
+
+    printf("Enter left child for %d:\n", data);
+    root->left = buildStrictBinaryTree();
+
+    printf("Enter right child for %d:\n", data);
+    root->right = buildStrictBinaryTree();
+
+    return root;
+}
+
+//Function to perform in-order traversal of 
+   the strictly binary tree
+void inorderTraversal(struct TreeNode* root) {
+    if (root == NULL) {
+        return;
+    }
+
+    inorderTraversal(root->left);
+    printf("%d ", root->data);
+    inorderTraversal(root->right);
+}
+
+int main() {
+    struct TreeNode* root = NULL;
+    printf("Enter the root node data (enter -1 to
+    exit): ");
+    int data;
+    scanf("%d", &data);
+
+    if (data != -1) {
+        root = (struct TreeNode*)malloc
+        (sizeof(struct TreeNode));
+        root->data = data;
+
+    printf("Enter left child for %d:\n", data);
+        root->left = buildStrictBinaryTree();
+
+    printf("Enter right child for %d:\n", data);
+        root->right = buildStrictBinaryTree();
+    }
+
+    printf("In-order traversal of the strictly 
+    binary tree: ");
+    inorderTraversal(root);
+
+    return 0;
+}  
+<h1>Output</h1>
+Enter the root node data (enter -1 to exit): 
+1
+Enter left child for 1:
+Enter the data for the node (enter -1 to exit): 
+2
+Enter left child for 2:
+Enter the data for the node (enter -1 to exit): 
+4
+Enter left child for 4:
+Enter the data for the node (enter -1 to exit): 
+-1
+Enter right child for 4:
+Enter the data for the node (enter -1 to exit): 
+-1
+Enter right child for 2:
+Enter the data for the node (enter -1 to exit): 
+5
+Enter left child for 5:
+Enter the data for the node (enter -1 to exit): 
+-1
+Enter right child for 5:
+Enter the data for the node (enter -1 to exit): 
+-1
+Enter right child for 1:
+Enter the data for the node (enter -1 to exit): 
+3
+Enter left child for 3:
+Enter the data for the node (enter -1 to exit): 
+-1
+Enter right child for 3:
+Enter the data for the node (enter -1 to exit): 
+-1
+In-order traversal of the strictly binary tree: 
+4 2 5 1 3
+</pre>
+
+    </body>
+</html>

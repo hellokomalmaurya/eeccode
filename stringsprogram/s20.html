@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>index</title>
+        <link rel="stylesheet" href="C:\Users\HP\Desktop\website\database-website\iframecss.css">
+    </head>
+    <body>
+       <h1>Code</h1>
+<pre>//Enter the string from the user and count the number of characters,words,spaces and lines.
+#include&lt;stdio.h>
+#include&lt;conio.h>
+void main(){
+char str[100];
+int i=0,chr=0,wrd=1,spc=0,ln=0;
+clrscr();
+printf("Enter a string: ");
+gets(str);
+for(i=0;str[i]!='\0';i++){
+chr++;
+if(str[i]==' '){
+wrd++;
+}
+if(str[i]==' '){
+spc++;
+}
+if(str[i]=='.'){
+ln++;
+}
+}
+printf("Character: %d",chr);
+printf("\nWord: %d",wrd);
+printf("\nSpace: %d",spc);
+printf("\nLine: %d",ln);
+getch();
+}
+
+<h1>Output</h1>
+Enter a string: Good morning! what you doing today?
+Character: 35
+Word: 6
+Space: 5
+Line: 0
+</pre>
+
+    </body>
+</html>

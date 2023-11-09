@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>index</title>
+        <link rel="stylesheet" href="C:\Users\HP\Desktop\website\database-website\iframecss.css">
+    </head>
+    <body>
+       <h1>Code</h1>
+<pre>//Enter the string from user and convert in uppercase?
+#include&lt;stdio.h>
+#include&lt;conio.h>
+void main(){
+char str[30];
+int i=0;
+clrscr();
+printf("Enter the string: ");
+gets(str);
+for(i=0;str[i]!='\0';i++){
+if(str[i]>='a'&& str[i]&lt;='z'){
+str[i]=str[i]-32;
+}
+}
+printf("%s",str);
+getch();
+} 
+<h1>Output</h1>
+Enter the string: Have a nice day!
+HAVE A NICE DAY!
+</pre>
+
+    </body>
+</html>

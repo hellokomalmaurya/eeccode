@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>index</title>
+        <link rel="stylesheet" href="C:\Users\HP\Desktop\website\database-website\iframecss.css">
+    </head>
+    <body>
+       <h1>Code</h1>
+<pre>
+#include&lt;stdio.h>
+#include&lt;stdlib.h>
+
+// Structure for a binary tree node
+struct TreeNode {
+    int data;
+    struct TreeNode* left;
+    struct TreeNode* right;
+};
+
+// Function to build a complete binary tree 
+from user input
+struct TreeNode* buildCompleteBinaryTree
+(int* index, int n) {
+    if (*index >= n) {
+        return NULL;
+    }
+
+    int data;
+ printf("Enter data for node %d: ", *index + 1);
+    scanf("%d", &data);
+
+    if (data == -1) {
+        return NULL;
+    }
+
+    struct TreeNode* root = (struct TreeNode*)
+    malloc(sizeof(struct TreeNode));
+    root->data = data;
+
+    (*index)++;
+ root->left = buildCompleteBinaryTree(index, n);
+    (*index)++;
+ root->right = buildCompleteBinaryTree(index, n);
+
+    return root;
+}
+
+// Function to perform in-order traversal of 
+the complete binary tree
+void inorderTraversal(struct TreeNode* root) {
+    if (root == NULL) {
+        return;
+    }
+
+    inorderTraversal(root->left);
+    printf("%d ", root->data);
+    inorderTraversal(root->right);
+}
+void PreorderTraversal(struct TreeNode* root) {
+    if (root == NULL) {
+        return;
+    }
+     printf("%d ", root->data);
+    PreorderTraversal(root->left);
+    PreorderTraversal(root->right);
+}
+void PostorderTraversal(struct TreeNode* root) {
+    if (root == NULL) {
+        return;
+    }
+     
+    PostorderTraversal(root->left);
+    PostorderTraversal(root->right);
+    printf("%d ", root->data);
+}
+
+int main() {
+    int n;
+    printf("Enter the number of nodes: ");
+    scanf("%d", &n);
+
+    if (n <= 0) {
+        printf("No tree created.\n");
+        return 0;
+    }
+
+    int index = 0;
+    struct TreeNode* root = 
+    buildCompleteBinaryTree(&index, n);
+
+    printf("In-order traversal of the 
+    complete binary tree: ");
+    inorderTraversal(root);
+    printf("\nPre-order traversal of the 
+    complete binary tree: ");
+    PreorderTraversal(root);
+    printf("\nPost-order traversal of the 
+    complete binary tree: ");
+    PostorderTraversal(root);
+    return 0;
+}  
+<h1>Output</h1>
+Enter the number of nodes: 6
+Enter data for node 1: 1
+Enter data for node 2: 2
+Enter data for node 3: 4
+Enter data for node 4: 5
+Enter data for node 5: 3
+Enter data for node 6: 6
+In-order traversal of the complete binary tree: 
+6 3 5 4 2 1 
+Pre-order traversal of the complete binary tree: 
+1 2 4 5 3 6 
+Post-order traversal of the complete binary tree: 
+6 3 5 4 2 1  
+</pre>
+
+    </body>
+</html>

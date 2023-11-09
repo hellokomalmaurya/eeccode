@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>index</title>
+        <link rel="stylesheet" href="C:\Users\HP\Desktop\website\database-website\iframecss.css">
+    </head>
+    <body>
+       <h1>Code</h1>
+<pre>//Enter a string from the user, Enter a character and perform linear search algorithm through iteration.
+#include&lt;stdio.h>
+#include&lt;conio.h>
+void main(){
+char str[30],search;
+int index,found,i;
+clrscr();
+printf("Enter a string: ");
+gets(str);
+printf("Enter character to search: ");
+scanf("%c",&search);
+for(i=0;str[i]!='\0';i++){
+if(str[i]==search){
+index=i;
+found=1;
+break;
+}
+}
+if(found){
+printf("character %c found on index %d.",search,index);
+}
+else{
+printf("Value not found!");
+}
+getch();
+}
+<h1>Output</h1>
+Enter a string: Have a nice day!
+Enter character to search: i
+character i found on index 8.
+</pre>
+
+    </body>
+</html>

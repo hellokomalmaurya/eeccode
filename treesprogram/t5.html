@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>index</title>
+        <link rel="stylesheet" href="C:\Users\HP\Desktop\website\database-website\iframecss.css">
+    </head>
+    <body>
+       <h1>Code</h1>
+<pre>
+#include&lt;stdio.h>
+#include&lt;stdlib.h>
+struct Node {
+    int data;
+    struct Node *left, *right;
+};
+int search(int arr[], int strt, int end, int value);
+struct Node* buildUtil(int in[], int post[], int inStrt, int inEnd,int* pIndex)
+{
+    if (inStrt > inEnd)
+        return NULL;
+    struct Node* tNode = (struct Node*)malloc(sizeof(struct Node));
+    tNode->data=(post[*pIndex]);
+    (*pIndex)--;
+    tNode->left = NULL;
+    tNode->right = NULL;
+    if (inStrt == inEnd)
+        return tNode;
+    int iIndex = search(in, inStrt, inEnd, 
+    tNode->data);
+    tNode->right= buildUtil(in, post, 
+    iIndex + 1, inEnd, pIndex);
+    tNode->left= buildUtil(in, post, inStrt, 
+    iIndex - 1, pIndex);
+    return tNode;
+}
+struct Node* buildTree(int in[], int post[], int n){
+  int pIndex = n - 1;
+  return buildUtil(in, post, 0, n - 1, &pIndex);
+}
+int search(int arr[], int strt, int end, int value)
+{
+    int i;
+    for (i = strt; i &lt;= end; i++) {
+        if (arr[i] == value)
+            break;
+    }
+    return i;
+}
+void inOrder(struct Node* node)
+{
+    if (node == NULL)
+        return;
+    inOrder(node->left);
+    printf("%d ",node->data);
+    inOrder(node->right);
+}
+int main(){   
+    int size,i;
+    printf("Enter size : ");
+    scanf("%d",&size);
+    int in[size],post[size];
+    printf("Enter elements of postorder : ");
+    for(i=0;i &lt; size;i++){
+        scanf("%d",&post[i]);
+    }
+    printf("Enter elements of inorder : ");
+    for(i=0;i &lt; size;i++){
+        scanf("%d",&in[i]);
+    }
+  struct Node* root=buildTree(in,post,size);
+    printf("Inorder traversal of the 
+    constructed tree : ");
+    inOrder(root);
+    return 0;
+}  
+<h1>Output</h1>
+Enter size : 10
+Enter elements of postorder : 
+9 1 2 12 7 5 3 11 4 8
+Enter elements of inorder : 
+9 5 1 7 2 12 8 4 3 11
+Inorder traversal of the constructed tree : 
+9 5 1 7 2 12 8 4 3 11 
+</pre>
+
+    </body>
+</html>

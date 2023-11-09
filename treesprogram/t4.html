@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>index</title>
+        <link rel="stylesheet" href="C:\Users\HP\Desktop\website\database-website\iframecss.css">
+    </head>
+    <body>
+       <h1>Code</h1>
+<pre>
+#include&lt;stdio.h>
+#include&lt;stdlib.h>
+struct node {
+    int data;
+    struct node* left;
+    struct node* right;
+};
+int search(int arr[], int strt, int end, 
+int value);
+struct node* buildTree(int in[], int pre[], 
+int inStrt, int inEnd) {
+    static int preIndex = 0;
+    if (inStrt > inEnd)
+        return NULL;
+    struct node* tNode = (struct node*)
+    malloc(sizeof(struct node));
+    tNode->data = (pre[preIndex++]);
+    tNode->left = NULL;
+    tNode->right = NULL;
+
+    if (inStrt == inEnd)
+        return tNode;
+    int inIndex = search(in, inStrt, inEnd, 
+   tNode->data);
+    tNode->left = buildTree(in, pre, inStrt, 
+   inIndex - 1);
+    tNode->right = buildTree(in, pre, 
+   inIndex + 1, inEnd);
+    return tNode;
+}
+int search(int arr[], int strt, int end, 
+    int value) {
+    int i;
+    for (i = strt; i &lt;= end; i++) {
+        if (arr[i] == value)
+            return i;
+    }}
+void printInorder(struct node* node)
+{
+    if (node == NULL)
+        return;
+    printInorder(node->left);
+    printf("%d\t ", node->data);
+    printInorder(node->right);
+}
+void printRightView(struct node* root, 
+int level, int* maxLevel) {
+    if (root == NULL) {
+        return;
+    }
+    if (level > *maxLevel) {
+        printf("%d\t", root->data);
+        *maxLevel = level;
+    }
+    printRightView(root->right, level + 1, 
+    maxLevel);
+    printRightView(root->left, level + 1, 
+    maxLevel);
+}
+
+int main() {
+    int i, size;
+    printf("Enter size: ");
+    scanf("%d", &size);
+    int in[size], pre[size];
+    printf("Enter elements of preorder 
+    array:\n");
+    for (i = 0; i &lt; size; i++) {
+        scanf("%d", &pre[i]);
+    }
+    printf("Enter elements of inorder 
+    array:\n");
+    for (i = 0; i &lt; size; i++) {
+        scanf("%d", &in[i]);
+    }
+    struct node* root = buildTree(in, pre, 
+    0, size - 1);
+    printf("Inorder traversal of the 
+    constructed tree:\n");
+    printInorder(root);
+    printf("\nRight view of the tree:\n");
+    int maxLevel = 0;
+    printRightView(root, 1, &maxLevel);
+}   
+<h1>Output</h1>
+Enter size: 3
+Enter elements of preorder array:
+1 2 3
+Enter elements of inorder array:
+2 1 3
+Inorder traversal of the constructed tree:
+2 1 3	 
+Right view of the tree:
+1 3
+</pre>
+
+    </body>
+</html>

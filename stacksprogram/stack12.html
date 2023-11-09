@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>index</title>
+        <link rel="stylesheet" href="C:\Users\HP\Desktop\website\database-website\iframecss.css">
+    </head>
+    <body>
+       <h1>Code</h1>
+<pre>
+#include&lt;stdio.h>
+#include&lt;string.h>
+#include&lt;ctype.h> 
+#include&lt;stdlib.h>
+#define N 40
+int stack[N];
+int top=-1;
+void push(int n){
+ if(top==N-1){
+    printf("Overflow\n");
+    return;
+ }
+ else{
+    top++;
+    stack[top]=n;
+ }   
+}
+int pop(){
+    int n;
+    if(top==-1){
+        printf("Underflow\n");
+    }
+    n=stack[top];
+        top--;
+        return n;
+}
+int evaluate(int op1,int op2,char ch){
+    int n;
+    if(op1 < op2){
+        n=op1;
+        op1=op2;
+        op2=n;
+    }
+    if(ch == '+')
+    n=op1 + op2;
+    else if(ch == '-')
+    n=op1 - op2;
+    else if(ch == '*')
+    n=op1 * op2;
+    else if(ch == '/')
+    n=op1 / op2;
+    else if (ch == '%')
+    n=op1 % op2;
+    else{
+    printf("The operator is not identified\n");
+    exit(0);
+    }
+    return(n);
+}
+void main(){
+    char str[20],ch,ch1;
+    int i=0,n,op1,op2;
+    printf("Enter the postfix expression : ");
+    scanf("%s",str);
+    ch=str[i];
+    while(ch!='\0'){
+        if(isdigit(ch)){
+            n=ch-'0';
+            push(n);
+        }
+        else{
+            op1=pop();
+            op2=pop();
+            n=evaluate(op1,op2,ch);
+            push(n);
+        }
+        ch=str[++i];
+    }
+        printf("The Result is : %d\n",pop());
+
+} 
+<h1>Output</h1>
+Enter the postfix expression : 23*45+*
+The Result is : 54
+</pre>
+
+    </body>
+</html>

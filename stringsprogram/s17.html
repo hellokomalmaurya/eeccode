@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>index</title>
+        <link rel="stylesheet" href="C:\Users\HP\Desktop\website\database-website\iframecss.css">
+    </head>
+    <body>
+       <h1>Code</h1>
+<pre>//Enter the string from the user, and count the number of vowels.
+#include&lt;stdio.h>
+#include&lt;conio.h>
+void main(){
+char str[30];
+int i,count=0;
+clrscr();
+printf("Enter a string: ");
+gets(str);
+for(i=0;str[i]!='\0';i++){
+if(str[i]=='a'||str[i]=='A'||str[i]=='e'||str[i]=='E'||str[i]=='i'||str[i]=='I'||str[i]=='o'||str[i]=='O'||str[i]=='u'||str[i]=='U'){
+count++;
+}
+}
+printf("Number of vowels are: %d",count);
+getch();
+} 
+<h1>Output</h1>
+Enter a string: Hello, Have a nice day!
+Number of vowels are: 8 
+</pre>
+
+    </body>
+</html>

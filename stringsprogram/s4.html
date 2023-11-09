@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>index</title>
+        <link rel="stylesheet" href="C:\Users\HP\Desktop\website\database-website\iframecss.css">
+    </head>
+    <body>
+       <h1>Code</h1>
+<pre>//Enter the string from the user and convert into title case.
+#include&lt;stdio.h>
+#include&lt;conio.h>
+void main(){
+char str[30];
+int i;
+clrscr();
+printf("Enter a string: ");
+gets(str);
+for(i=0;str[i]!='\0';i++){
+if(str[i]>='A'&& str[i]&lt;='Z'){
+str[i]=str[i]+32;
+}
+if(str[i-1]==' '&& (str[i]>='a'&& str[i]&lt;='z')){
+str[i]=str[i]-32;
+}
+}
+if(str[0]>='a'&& str[0]&lt;='z'){
+str[0]=str[0]-32;
+}
+printf("%s",str);
+getch();
+} 
+<h1>Output</h1>
+Enter a string: get well soon!
+Get Well Soon!
+</pre>
+
+    </body>
+</html>

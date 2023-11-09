@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>index</title>
+        <link rel="stylesheet" href="C:\Users\HP\Desktop\website\database-website\iframecss.css">
+    </head>
+    <body>
+       <h1>Code</h1>
+<pre>
+#include&lt;stdio.h>
+#include&lt;stdlib.h>
+#include&lt;stdbool.h>
+#include&lt;limits.h>
+    struct tree{
+        int data;
+        struct tree *left;
+        struct tree *right;
+    };
+    struct tree *p,*start,*nn,*search,*prev,*root,*temp;
+    struct tree* find_minimum(struct tree * root) {
+      while(root -> left != NULL) 
+          root=root->left;
+      return root;
+    }
+    bool hasDeadEnd(struct tree* root, int min, int max) {
+        if (root == NULL)
+            return false;
+        // Check if the current node is a dead end
+        if (max - min &lt;= 2) {
+            return true;
+        }
+        // Recursively check the left and right subtrees
+        bool leftDeadEnd = hasDeadEnd(root->left, min, root->data - 1);
+        bool rightDeadEnd = hasDeadEnd(root->right, root->data + 1, max);
+        // Return true if a dead end is found in either subtree
+        return leftDeadEnd || rightDeadEnd;
+    }
+    
+    void insert(){
+        int value;
+        printf("Enter the value of node which you want to insert:");
+        scanf("%d",&value);
+        if(start==NULL){
+           start=(struct tree*)malloc(sizeof(struct tree));
+            start->data=value;
+            start->left=start->right=NULL;
+        }
+       else{
+           nn=(struct tree*)malloc(sizeof(struct tree));
+           nn->data=value;
+           nn->left=nn->right=NULL;
+           prev=NULL;
+           search=start;
+           
+           while(search!=NULL){
+          if(search->data>value){
+              prev=search;
+              search=search->left;
+          }
+         else if(search->data< value){
+             prev=search;
+             search=search->right;
+         }
+       }
+          if(prev->data&lt;value){
+          printf("Inserted value at left is : %d\n",value);
+          prev->left=nn;}
+          if(prev->data< value){
+          printf("Inserted value at right is : %d\n",value);
+          prev->right=nn;
+       }
+           
+       }
+    }
+    struct tree* del(struct tree * root, int x) {
+      if (root == NULL)
+        return NULL;
+        else{
+      if (x > root -> data)
+        root -> right = del(root -> right, x);
+      else if (x < root -> data)
+        root -> left = del(root -> left, x);
+      else {
+        if (root -> left == NULL && root -> right== NULL) {
+          free(root);
+          return NULL;
+        }
+        else if (root -> left == NULL || root -> right == NULL) {
+          struct tree *temp;
+          if (root -> left == NULL)
+            temp = root -> right;
+          else{
+            temp = root -> left;
+          free(root);
+          return temp;}
+        }
+      else {
+          struct tree *temp = find_minimum(root -> right);
+          root -> data = temp -> data;
+          root -> right= del(root -> right, temp -> data);
+        }
+      }}
+      return root;
+    }
+     void find(struct tree* root,int x){
+         if(root->data==x){
+        printf("Value found");
+         return;
+         }
+        else if(root->data>x)
+          find(root->left,x);
+        else
+          find (root->right,x);
+     }
+    void inorder(struct tree *root) {
+      if (root != NULL) 
+      {
+        inorder(root -> left); 
+        printf(" %d ", root -> data);
+        inorder(root -> right);  
+      }
+    }
+    void preorder(struct tree *root) {
+      if (root != NULL) 
+      {
+        printf(" %d ", root -> data);
+         preorder(root -> left); 
+        preorder(root -> right);  
+      }
+    }
+    void postorder(struct tree *root) {
+      if (root != NULL) 
+      {
+         postorder(root -> left); 
+        postorder(root -> right);  
+        printf(" %d ", root -> data);
+      }
+    }
+    int main()
+    {
+    int op,value;
+    while(1){
+        printf("\nPress 1.Insert,
+        2.Delete,3.Search,
+        4.Exit,
+        5.Inorder printing,
+        6. Preorder printing,
+        7.Postorder printing,
+        8.Find dead end : ");
+        scanf("%d",&op);
+            switch(op){
+        case 1 : insert();
+        break;
+        case 2 :
+            printf("Enter the value to be deleted :");
+            scanf("%d",&value);
+            start=del(start,value);
+            break;
+        case 3 : 
+            printf("Enter the value to be found :");
+            scanf("%d",&value);
+            find(start,value);
+            break;
+        case 4 : printf("Exited!");
+               exit(0);
+              break;
+        case 5 : inorder(start);
+           break;
+        case 6 : preorder(start);
+           break;
+        case 7 : postorder(start);
+           break;
+        case 8 :if (hasDeadEnd(start, INT_MIN, INT_MAX)) {
+            printf("The tree has a dead end.");
+        } else {
+            printf("The tree does not have a dead end.");
+        }
+           default : 
+           printf("Invalid option!");
+    }}
+    return 0;
+    }
+<h1>Output</h1>
+Press 1.Insert,  2.Delete,  3.Search,  4.Exit,  5.Inorder printing,  6. Preorder printing,  7.Postorder printing,  8.Find dead end :
+ 1
+Enter the value of node which you want to insert:45
+
+Press 1.Insert,  2.Delete,  3.Search,  4.Exit,  5.Inorder printing,  6. Preorder printing,  7.Postorder printing,  8.Find dead end :
+ 1
+Enter the value of node which you want to insert:60
+Inserted value at right is : 60
+
+Press 1.Insert,  2.Delete,  3.Search,  4.Exit,  5.Inorder printing,  6. Preorder printing,  7.Postorder printing,  8.Find dead end :
+ 1
+Enter the value of node which you want to insert:32
+Inserted value at left is : 32
+
+Press 1.Insert,  2.Delete,  3.Search,  4.Exit,  5.Inorder printing,  6. Preorder printing,  7.Postorder printing,  8.Find dead end :
+ 1
+Enter the value of node which you want to insert:77
+Inserted value at right is : 77
+
+Press 1.Insert,  2.Delete,  3.Search,  4.Exit,  5.Inorder printing,  6. Preorder printing,  7.Postorder printing,  8.Find dead end :
+ 5
+ 32  45  60  77 
+Press 1.Insert,  2.Delete,  3.Search,  4.Exit,  5.Inorder printing,  6. Preorder printing,  7.Postorder printing,  8.Find dead end :
+ 6
+ 45  32  60  77 
+Press 1.Insert,  2.Delete,  3.Search,  4.Exit,  5.Inorder printing,  6. Preorder printing,  7.Postorder printing,  8.Find dead end :
+ 7
+ 32  77  60  45 
+Press 1.Insert,  2.Delete,  3.Search,  4.Exit,  5.Inorder printing,  6. Preorder printing,  7.Postorder printing,  8.Find dead end :
+ 3
+Enter the value to be found :77
+Value found
+Press 1.Insert,  2.Delete,  3.Search,  4.Exit,  5.Inorder printing,  6. Preorder printing,  7.Postorder printing,  8.Find dead end :
+ 8
+The tree has a dead end.Invalid option!
+Press 1.Insert,  2.Delete,  3.Search,  4.Exit,  5.Inorder printing,  6. Preorder printing,  7.Postorder printing,  8.Find dead end :
+ 4
+Exited! 
+</pre>
+
+    </body>
+</html>
